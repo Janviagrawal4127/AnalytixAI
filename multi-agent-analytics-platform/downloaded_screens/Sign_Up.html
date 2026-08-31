@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AnalytixAI - Sign Up</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"on-error-container": "#ffdad6", "on-tertiary-fixed": "#210f47", "surface-container-highest": "#37333e", "on-tertiary-fixed-variant": "#4e3d75", "outline-variant": "#4a4458", "inverse-surface": "#e7e0ee", "on-tertiary-container": "#e9ddff", "inverse-on-surface": "#322f3a", "error-container": "#93000a", "tertiary-container": "#4e3d75", "primary-fixed-dim": "#99cbff", "on-background": "#e7e0ee", "surface-variant": "#37333e", "on-surface-variant": "#ccc2db", "surface-container-lowest": "#100d16", "tertiary-fixed-dim": "#d0bcfe", "on-primary-fixed-variant": "#004a78", background: "#15121c", "secondary-fixed": "#cfe5ff", "on-secondary-container": "#cfe5ff", outline: "#958da4", "surface-container-low": "#1d1a24", "on-surface": "#e7e0ee", "secondary-container": "#124a73", "on-primary-fixed": "#001d34", "surface-bright": "#3b3743", "secondary-fixed-dim": "#9dcbfb", "inverse-primary": "#00629e", tertiary: "#d0bcfe", "surface-tint": "#99cbff", "on-secondary": "#003355", surface: "#15121c", "on-primary-container": "#cfe5ff", "on-tertiary": "#37265d", "surface-container": "#211e28", "primary-fixed": "#cfe5ff", error: "#ffb4ab", secondary: "#9dcbfb", "on-error": "#690005", "primary-container": "#004a78", "surface-container-high": "#2c2833", "surface-dim": "#15121c", "on-secondary-fixed": "#001d34", "tertiary-fixed": "#e9ddff", "on-primary": "#003355", "on-secondary-fixed-variant": "#124a73", primary: "#99cbff"}, borderRadius: {DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem"}, spacing: {"container-padding-mobile": "1rem", "stack-md": "1rem", unit: "4px", "stack-sm": "0.5rem", "container-padding-desktop": "2rem", gutter: "1.5rem", "stack-lg": "2rem"}, fontFamily: {"headline-lg": ["Outfit"], "label-sm": ["Inter"], "display-lg": ["Outfit"], "label-md": ["Inter"], "headline-md": ["Outfit"], "body-lg": ["Inter"], "headline-lg-mobile": ["Outfit"], "body-md": ["Inter"], headline: ["Outfit"], display: ["Outfit"], body: ["Inter"], label: ["Inter"]}, fontSize: {"headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600"}], "label-sm": ["12px", {lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600"}], "display-lg": ["48px", {lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700"}], "label-md": ["14px", {lineHeight: "20px", letterSpacing: "0.02em", fontWeight: "500"}], "headline-md": ["24px", {lineHeight: "32px", fontWeight: "600"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "headline-lg-mobile": ["28px", {lineHeight: "36px", fontWeight: "600"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}]}}}};</script>
+<style>
+        body {
+            background-color: #020617; /* Floor */
+            color: #dae2fd;
+        }
+        
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background-color: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-left: 1px solid rgba(255, 255, 255, 0.04);
+            border-right: 1px solid rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, theme('colors.primary-container'), #5b21b6);
+            color: white;
+            transition: all 0.2s ease-in-out;
+        }
+        
+        .btn-primary:hover {
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.5); /* Accent Glow */
+        }
+
+        .input-cyber {
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: theme('colors.on-surface');
+            transition: all 0.2s;
+        }
+        
+        .input-cyber:focus {
+            border-color: theme('colors.primary-container');
+            box-shadow: 0 0 15px rgba(124, 58, 237, 0.15);
+            outline: none;
+        }
+        
+        .input-cyber::placeholder {
+            color: #64748b;
+        }
+
+        /* Abstract glowing orbs in background */
+        .glow-orb-purple {
+            position: absolute;
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, rgba(124,58,237,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .glow-orb-cyan {
+            position: absolute;
+            width: 30vw;
+            height: 30vw;
+            background: radial-gradient(circle, rgba(3,181,211,0.1) 0%, rgba(3,181,211,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center relative overflow-hidden font-body-md text-body-md selection:bg-primary-container selection:text-white">
+<!-- Background Orbs -->
+<div class="glow-orb-purple top-[-10%] left-[-10%]"></div>
+<div class="glow-orb-cyan bottom-[-10%] right-[-10%]"></div>
+<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDIiLz4KPC9zdmc+')] opacity-20 z-0"></div> <!-- Subtle grid pattern -->
+<main class="w-full h-screen flex flex-col md:flex-row z-10">
+<!-- Left Panel: Brand Showcase -->
+<section class="hidden md:flex flex-col w-1/2 p-container-padding-desktop justify-between relative overflow-hidden bg-surface-container-lowest/80 backdrop-blur-sm border-r border-white/5">
+<div class="z-10 flex items-center gap-stack-sm">
+<span class="material-symbols-outlined text-primary-container text-display-lg" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<h1 class="font-display-lg text-display-lg text-primary font-bold tracking-tight">AnalytixAI</h1>
+</div>
+<div class="z-10 flex flex-col gap-stack-lg max-w-lg">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-stack-sm">Enterprise-grade AI analytics.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Harness the power of predictive models and real-time data streaming to transform raw data into actionable intelligence.</p>
+</div>
+<!-- Bento Grid Style Stats -->
+<div class="grid grid-cols-2 gap-stack-md">
+<div class="glass-panel p-stack-md rounded-xl flex flex-col gap-stack-sm">
+<div class="flex items-center gap-stack-sm text-secondary">
+<span class="material-symbols-outlined">speed</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Processing</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface">1.2<span class="text-secondary font-label-md text-label-md ml-1">PB/s</span></div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Real-time throughput</p>
+</div>
+<div class="glass-panel p-stack-md rounded-xl flex flex-col gap-stack-sm">
+<div class="flex items-center gap-stack-sm text-tertiary">
+<span class="material-symbols-outlined">model_training</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Accuracy</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface">99.9<span class="text-tertiary font-label-md text-label-md ml-1">%</span></div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Predictive confidence</p>
+</div>
+</div>
+</div>
+<div class="z-10 flex gap-stack-md text-on-surface-variant font-label-sm text-label-sm">
+<span>© 2024 AnalytixAI</span>
+<a class="hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms</a>
+</div>
+<!-- Abstract Data Graphic Background -->
+<div class="absolute inset-0 z-0 opacity-30 pointer-events-none" data-alt="A futuristic abstract data visualization graphic. It features glowing cyan and deep purple wireframe geometric shapes, interconnected nodes, and flowing digital light streams against a dark space-like background, representing high-speed data processing and artificial intelligence in a cyberpunk aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDV1YZMUFrQPnGVfnTdMXuEU7muvNu0hc5BuPSUYx_jcwRZWu8AYTn0VSfVkJdMLMZVVc2za8Yj5tYXl78zFmeOrZBsPYdvjfKg4q5B5Dl_nq3OWbJe_dnkJupKAb5u5BbBUmeqk6ptAonV0whR6rETEPaJtrOIH9VepCEjlP7WN6VM64ErL__DjKGeijn0v_HNNOik63WvOlHESbNQcFjoiGyizCo2BW0WNjD1bHpJD7FbHAli0p7mtQ'); background-size: cover; background-position: center;"></div>
+</section>
+<!-- Right Panel: Registration Form -->
+<section class="w-full md:w-1/2 flex items-center justify-center p-container-padding-mobile md:p-container-padding-desktop bg-surface/50 backdrop-blur-xl">
+<div class="w-full max-w-md glass-panel rounded-xl p-stack-lg shadow-[0_0_40px_rgba(0,0,0,0.5)]">
+<!-- Mobile Logo -->
+<div class="flex md:hidden items-center justify-center gap-stack-sm mb-stack-lg">
+<span class="material-symbols-outlined text-primary-container text-headline-lg-mobile" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold tracking-tight">AnalytixAI</h1>
+</div>
+<div class="mb-stack-lg text-center md:text-left">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-unit">Create Account</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Join the enterprise tier and start analyzing.</p>
+</div>
+<form class="flex flex-col gap-stack-md">
+<div class="flex flex-col gap-unit">
+<label class="font-label-md text-label-md text-on-surface-variant" for="fullName">Full Name</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">person</span>
+<input class="input-cyber w-full rounded-lg py-2 pl-10 pr-4 font-body-md text-body-md focus:ring-0" id="fullName" placeholder="John Doe" type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-unit">
+<label class="font-label-md text-label-md text-on-surface-variant" for="email">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">mail</span>
+<input class="input-cyber w-full rounded-lg py-2 pl-10 pr-4 font-body-md text-body-md focus:ring-0" id="email" placeholder="john@company.com" type="email"/>
+</div>
+</div>
+<div class="flex flex-col gap-unit">
+<label class="font-label-md text-label-md text-on-surface-variant" for="password">Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">lock</span>
+<input class="input-cyber w-full rounded-lg py-2 pl-10 pr-10 font-body-md text-body-md focus:ring-0" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility_off</span>
+</button>
+</div>
+<div class="flex gap-1 mt-1">
+<!-- Password strength indicators -->
+<div class="h-1 flex-1 bg-surface-bright rounded-full"></div>
+<div class="h-1 flex-1 bg-surface-bright rounded-full"></div>
+<div class="h-1 flex-1 bg-surface-bright rounded-full"></div>
+<div class="h-1 flex-1 bg-surface-bright rounded-full"></div>
+</div>
+</div>
+<div class="flex flex-col gap-unit">
+<label class="font-label-md text-label-md text-on-surface-variant" for="confirmPassword">Confirm Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">lock_reset</span>
+<input class="input-cyber w-full rounded-lg py-2 pl-10 pr-4 font-body-md text-body-md focus:ring-0" id="confirmPassword" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<button class="btn-primary w-full rounded-lg py-3 font-label-md text-label-md uppercase tracking-wider mt-stack-sm flex justify-center items-center gap-2" type="submit">
+<span>Create Account</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+<div class="mt-stack-lg text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Already have an account? 
+                        <a class="text-secondary hover:text-secondary-fixed transition-colors font-label-md text-label-md" href="#">Sign in instead</a>
+</p>
+</div>
+</div>
+</section>
+</main>
+<script>
+        // Simple script to toggle password visibility
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtns = document.querySelectorAll('button[type="button"]');
+            toggleBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const input = e.currentTarget.parentElement.querySelector('input');
+                    const icon = e.currentTarget.querySelector('.material-symbols-outlined');
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        icon.textContent = 'visibility';
+                    } else {
+                        input.type = 'password';
+                        icon.textContent = 'visibility_off';
+                    }
+                });
+            });
+        });
+    </script>
+</body></html>

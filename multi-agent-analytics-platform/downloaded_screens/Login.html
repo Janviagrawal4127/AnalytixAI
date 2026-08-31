@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AnalytixAI - Sign In</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"on-error-container": "#ffdad6", "on-tertiary-fixed": "#210f47", "surface-container-highest": "#37333e", "on-tertiary-fixed-variant": "#4e3d75", "outline-variant": "#4a4458", "inverse-surface": "#e7e0ee", "on-tertiary-container": "#e9ddff", "inverse-on-surface": "#322f3a", "error-container": "#93000a", "tertiary-container": "#4e3d75", "primary-fixed-dim": "#99cbff", "on-background": "#e7e0ee", "surface-variant": "#37333e", "on-surface-variant": "#ccc2db", "surface-container-lowest": "#100d16", "tertiary-fixed-dim": "#d0bcfe", "on-primary-fixed-variant": "#004a78", background: "#15121c", "secondary-fixed": "#cfe5ff", "on-secondary-container": "#cfe5ff", outline: "#958da4", "surface-container-low": "#1d1a24", "on-surface": "#e7e0ee", "secondary-container": "#124a73", "on-primary-fixed": "#001d34", "surface-bright": "#3b3743", "secondary-fixed-dim": "#9dcbfb", "inverse-primary": "#00629e", tertiary: "#d0bcfe", "surface-tint": "#99cbff", "on-secondary": "#003355", surface: "#15121c", "on-primary-container": "#cfe5ff", "on-tertiary": "#37265d", "surface-container": "#211e28", "primary-fixed": "#cfe5ff", error: "#ffb4ab", secondary: "#9dcbfb", "on-error": "#690005", "primary-container": "#004a78", "surface-container-high": "#2c2833", "surface-dim": "#15121c", "on-secondary-fixed": "#001d34", "tertiary-fixed": "#e9ddff", "on-primary": "#003355", "on-secondary-fixed-variant": "#124a73", primary: "#99cbff"}, borderRadius: {DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem"}, spacing: {"container-padding-mobile": "1rem", "stack-md": "1rem", unit: "4px", "stack-sm": "0.5rem", "container-padding-desktop": "2rem", gutter: "1.5rem", "stack-lg": "2rem"}, fontFamily: {"headline-lg": ["Outfit"], "label-sm": ["Inter"], "display-lg": ["Outfit"], "label-md": ["Inter"], "headline-md": ["Outfit"], "body-lg": ["Inter"], "headline-lg-mobile": ["Outfit"], "body-md": ["Inter"], headline: ["Outfit"], display: ["Outfit"], body: ["Inter"], label: ["Inter"]}, fontSize: {"headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600"}], "label-sm": ["12px", {lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600"}], "display-lg": ["48px", {lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700"}], "label-md": ["14px", {lineHeight: "20px", letterSpacing: "0.02em", fontWeight: "500"}], "headline-md": ["24px", {lineHeight: "32px", fontWeight: "600"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "headline-lg-mobile": ["28px", {lineHeight: "36px", fontWeight: "600"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}]}}}};</script>
+<style>
+        .glass-card {
+            background-color: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-left: 1px solid rgba(255, 255, 255, 0.04);
+            border-right: 1px solid rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+        }
+        
+        .glow-button {
+            background: linear-gradient(135deg, #7c3aed 0%, #5a00c6 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .glow-button:hover {
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .input-field {
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+        }
+
+        .input-field:focus {
+            border-color: #d2bbff;
+            box-shadow: 0 0 10px rgba(210, 187, 255, 0.2);
+            outline: none;
+        }
+
+        .cyber-grid {
+            background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        .accent-glow {
+            box-shadow: 0 0 40px rgba(124, 58, 237, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex selection:bg-primary-container selection:text-on-primary-container overflow-hidden">
+<!-- Note: TopNav and SideNav are suppressed for this transactional Sign-In view -->
+<div class="flex w-full min-h-screen">
+<!-- Left Panel: Brand Showcase (Hidden on Mobile) -->
+<div class="hidden lg:flex lg:w-1/2 relative cyber-grid overflow-hidden flex-col justify-between p-12 border-r border-white/5">
+<!-- Ambient Lighting -->
+<div class="absolute top-[-20%] left-[-10%] w-[80%] h-[80%] bg-primary-container/20 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-secondary-container/10 rounded-full blur-[100px] pointer-events-none"></div>
+<!-- Header -->
+<div class="z-10 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center accent-glow">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">analytics</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-primary font-bold tracking-tight">AnalytixAI</h1>
+</div>
+<!-- Center Content: Stats -->
+<div class="z-10 flex flex-col gap-stack-lg max-w-lg mt-16">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Enterprise Intelligence,<br/>Unleashed.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Access cutting-edge predictive models and real-time data streaming designed for professional analysts.</p>
+</div>
+<div class="flex flex-col gap-stack-md mt-8">
+<!-- Stat Card 1 -->
+<div class="glass-card rounded-xl p-6 flex items-start gap-4 transform transition-transform hover:-translate-y-1 duration-300">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center border border-white/10 text-tertiary shadow-[0_0_15px_rgba(78,222,163,0.1)]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">monitoring</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-on-surface">10k+ Analysts</div>
+<div class="font-body-md text-body-md text-on-surface-variant">Powering data teams globally</div>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="glass-card rounded-xl p-6 flex items-start gap-4 transform transition-transform hover:-translate-y-1 duration-300 delay-100">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center border border-white/10 text-secondary shadow-[0_0_15px_rgba(76,215,246,0.1)]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-on-surface">12 AI Agents</div>
+<div class="font-body-md text-body-md text-on-surface-variant">Working concurrently on complex EDA</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer graphic space -->
+<div class="z-10 mt-auto pt-12">
+<div class="h-32 w-full rounded-xl overflow-hidden relative border border-white/5 bg-surface-container-lowest/50" data-alt="A highly detailed, abstract data visualization rendering. Glowing purple and cyan nodes connected by fine lines floating in a dark void. The lines pulse with neon energy, suggesting high-speed data transfer in a cyberpunk aesthetic. The background is a deep, starry black with subtle grid overlays. Lighting is focused on the intersecting nodes, creating a high-contrast, professional tech look." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBVP-Sr2Pe42nxtKe7okFr22zQIwXV3vsTLmKQPdwqUWZ11-DFD_qhKwtywHNEa7fC_jz-A5tUAPoaFpIq5Dt-XOp9ttB_QLMJGdA08disocOhON0kGOki12KvJpNk_B6fzgyHWXLWZNcgUG3cfYAGsaHqKVPrFHFNzzg7eE91tuHwqNga8MJgA5B2DSIFcdT56CxA5LHVSvMMKYYeF-D4WKjTEoaMnAnsZV-8FHLt5TQEHxw6teJ_ZXg'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+</div>
+</div>
+</div>
+<!-- Right Panel: Authentication Form -->
+<div class="w-full lg:w-1/2 flex items-center justify-center p-container-padding-mobile lg:p-container-padding-desktop relative">
+<!-- Mobile Brand Header (Visible only on small screens) -->
+<div class="absolute top-6 left-6 lg:hidden flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-sm" style="font-variation-settings: 'FILL' 1;">analytics</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-primary font-bold">AnalytixAI</h1>
+</div>
+<!-- Form Container -->
+<div class="w-full max-w-md">
+<div class="mb-stack-lg text-center lg:text-left">
+<h2 class="font-headline-lg-mobile lg:font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-on-surface mb-2">Welcome Back</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Sign in to access your secure dashboard.</p>
+</div>
+<form class="flex flex-col gap-stack-md" onsubmit="event.preventDefault();">
+<!-- Email Field -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2" for="email">Email Address</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 flex items-center pl-4 text-on-surface-variant pointer-events-none">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</span>
+<input class="input-field w-full rounded-lg h-12 pl-12 pr-4 text-on-surface font-body-md placeholder:text-on-surface-variant/50" id="email" name="email" placeholder="analyst@enterprise.com" required="" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div>
+<div class="flex justify-between items-center mb-2">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="password">Password</label>
+<a class="font-label-md text-label-md text-primary hover:text-inverse-primary transition-colors" href="#">Forgot?</a>
+</div>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 flex items-center pl-4 text-on-surface-variant pointer-events-none">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</span>
+<input class="input-field w-full rounded-lg h-12 pl-12 pr-12 text-on-surface font-body-md placeholder:text-on-surface-variant/50" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<!-- Toggle Visibility -->
+<button class="absolute inset-y-0 right-0 flex items-center pr-4 text-on-surface-variant hover:text-on-surface transition-colors" onclick="togglePassword()" type="button">
+<span class="material-symbols-outlined text-[20px]" id="visibility-icon">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Remember Me -->
+<div class="flex items-center gap-3 mt-2">
+<input class="w-4 h-4 rounded border-outline-variant bg-surface-container text-primary-container focus:ring-primary-container focus:ring-offset-background" id="remember" type="checkbox"/>
+<label class="font-label-md text-label-md text-on-surface-variant cursor-pointer select-none" for="remember">Keep me signed in for 30 days</label>
+</div>
+<!-- CTA -->
+<button class="glow-button w-full h-12 rounded-lg font-label-md text-label-md text-white font-semibold mt-4 flex items-center justify-center gap-2" type="submit">
+<span>Sign In</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+<!-- Divider -->
+<div class="flex items-center gap-4 my-8">
+<div class="flex-1 h-px bg-white/5"></div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Or</div>
+<div class="flex-1 h-px bg-white/5"></div>
+</div>
+<!-- SSO Options -->
+<div class="flex flex-col gap-3">
+<button class="glass-card w-full h-12 rounded-lg flex items-center justify-center gap-3 hover:bg-surface-container-high transition-colors text-on-surface font-label-md text-label-md" type="button">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+<span>Continue with Google Workspace</span>
+</button>
+<button class="glass-card w-full h-12 rounded-lg flex items-center justify-center gap-3 hover:bg-surface-container-high transition-colors text-on-surface font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined">api</span>
+<span>Sign in with Enterprise SSO</span>
+</button>
+</div>
+<!-- Create Account Link -->
+<div class="mt-8 text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Don't have access? 
+                        <a class="text-secondary hover:text-secondary-fixed transition-colors font-semibold" href="#">Create an account</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const visibilityIcon = document.getElementById('visibility-icon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                visibilityIcon.textContent = 'visibility';
+            } else {
+                passwordInput.type = 'password';
+                visibilityIcon.textContent = 'visibility_off';
+            }
+        }
+    </script>
+</body></html>

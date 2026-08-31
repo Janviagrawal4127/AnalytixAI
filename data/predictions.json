@@ -1,0 +1,415 @@
+{
+  "revenue_forecast_90d": [
+    {
+      "date": "2026-07-01",
+      "predicted_sales": 3181.0228766154223
+    },
+    {
+      "date": "2026-07-02",
+      "predicted_sales": 3183.1359660220355
+    },
+    {
+      "date": "2026-07-03",
+      "predicted_sales": 3185.2490554286487
+    },
+    {
+      "date": "2026-07-04",
+      "predicted_sales": 3187.362144835262
+    },
+    {
+      "date": "2026-07-05",
+      "predicted_sales": 3189.475234241875
+    },
+    {
+      "date": "2026-07-06",
+      "predicted_sales": 3191.5883236484883
+    },
+    {
+      "date": "2026-07-07",
+      "predicted_sales": 3193.7014130551015
+    },
+    {
+      "date": "2026-07-08",
+      "predicted_sales": 3195.8145024617147
+    },
+    {
+      "date": "2026-07-09",
+      "predicted_sales": 3197.927591868328
+    },
+    {
+      "date": "2026-07-10",
+      "predicted_sales": 3200.040681274941
+    },
+    {
+      "date": "2026-07-11",
+      "predicted_sales": 3202.1537706815543
+    },
+    {
+      "date": "2026-07-12",
+      "predicted_sales": 3204.2668600881675
+    },
+    {
+      "date": "2026-07-13",
+      "predicted_sales": 3206.3799494947807
+    },
+    {
+      "date": "2026-07-14",
+      "predicted_sales": 3208.493038901394
+    },
+    {
+      "date": "2026-07-15",
+      "predicted_sales": 3210.606128308007
+    },
+    {
+      "date": "2026-07-16",
+      "predicted_sales": 3212.7192177146203
+    },
+    {
+      "date": "2026-07-17",
+      "predicted_sales": 3214.8323071212335
+    },
+    {
+      "date": "2026-07-18",
+      "predicted_sales": 3216.9453965278467
+    },
+    {
+      "date": "2026-07-19",
+      "predicted_sales": 3219.05848593446
+    },
+    {
+      "date": "2026-07-20",
+      "predicted_sales": 3221.1715753410726
+    },
+    {
+      "date": "2026-07-21",
+      "predicted_sales": 3223.2846647476863
+    },
+    {
+      "date": "2026-07-22",
+      "predicted_sales": 3225.397754154299
+    },
+    {
+      "date": "2026-07-23",
+      "predicted_sales": 3227.5108435609127
+    },
+    {
+      "date": "2026-07-24",
+      "predicted_sales": 3229.6239329675254
+    },
+    {
+      "date": "2026-07-25",
+      "predicted_sales": 3231.7370223741386
+    },
+    {
+      "date": "2026-07-26",
+      "predicted_sales": 3233.850111780752
+    },
+    {
+      "date": "2026-07-27",
+      "predicted_sales": 3235.963201187365
+    },
+    {
+      "date": "2026-07-28",
+      "predicted_sales": 3238.0762905939782
+    },
+    {
+      "date": "2026-07-29",
+      "predicted_sales": 3240.1893800005914
+    },
+    {
+      "date": "2026-07-30",
+      "predicted_sales": 3242.3024694072046
+    },
+    {
+      "date": "2026-07-31",
+      "predicted_sales": 3244.415558813818
+    },
+    {
+      "date": "2026-08-01",
+      "predicted_sales": 3246.528648220431
+    },
+    {
+      "date": "2026-08-02",
+      "predicted_sales": 3248.641737627044
+    },
+    {
+      "date": "2026-08-03",
+      "predicted_sales": 3250.7548270336574
+    },
+    {
+      "date": "2026-08-04",
+      "predicted_sales": 3252.8679164402706
+    },
+    {
+      "date": "2026-08-05",
+      "predicted_sales": 3254.981005846884
+    },
+    {
+      "date": "2026-08-06",
+      "predicted_sales": 3257.094095253497
+    },
+    {
+      "date": "2026-08-07",
+      "predicted_sales": 3259.20718466011
+    },
+    {
+      "date": "2026-08-08",
+      "predicted_sales": 3261.3202740667234
+    },
+    {
+      "date": "2026-08-09",
+      "predicted_sales": 3263.4333634733366
+    },
+    {
+      "date": "2026-08-10",
+      "predicted_sales": 3265.54645287995
+    },
+    {
+      "date": "2026-08-11",
+      "predicted_sales": 3267.659542286563
+    },
+    {
+      "date": "2026-08-12",
+      "predicted_sales": 3269.772631693176
+    },
+    {
+      "date": "2026-08-13",
+      "predicted_sales": 3271.8857210997894
+    },
+    {
+      "date": "2026-08-14",
+      "predicted_sales": 3273.9988105064026
+    },
+    {
+      "date": "2026-08-15",
+      "predicted_sales": 3276.111899913016
+    },
+    {
+      "date": "2026-08-16",
+      "predicted_sales": 3278.224989319629
+    },
+    {
+      "date": "2026-08-17",
+      "predicted_sales": 3280.338078726242
+    },
+    {
+      "date": "2026-08-18",
+      "predicted_sales": 3282.4511681328554
+    },
+    {
+      "date": "2026-08-19",
+      "predicted_sales": 3284.5642575394686
+    },
+    {
+      "date": "2026-08-20",
+      "predicted_sales": 3286.677346946082
+    },
+    {
+      "date": "2026-08-21",
+      "predicted_sales": 3288.790436352695
+    },
+    {
+      "date": "2026-08-22",
+      "predicted_sales": 3290.903525759308
+    },
+    {
+      "date": "2026-08-23",
+      "predicted_sales": 3293.0166151659214
+    },
+    {
+      "date": "2026-08-24",
+      "predicted_sales": 3295.1297045725346
+    },
+    {
+      "date": "2026-08-25",
+      "predicted_sales": 3297.242793979148
+    },
+    {
+      "date": "2026-08-26",
+      "predicted_sales": 3299.3558833857605
+    },
+    {
+      "date": "2026-08-27",
+      "predicted_sales": 3301.468972792374
+    },
+    {
+      "date": "2026-08-28",
+      "predicted_sales": 3303.582062198987
+    },
+    {
+      "date": "2026-08-29",
+      "predicted_sales": 3305.6951516056006
+    },
+    {
+      "date": "2026-08-30",
+      "predicted_sales": 3307.8082410122133
+    },
+    {
+      "date": "2026-08-31",
+      "predicted_sales": 3309.9213304188265
+    },
+    {
+      "date": "2026-09-01",
+      "predicted_sales": 3312.0344198254397
+    },
+    {
+      "date": "2026-09-02",
+      "predicted_sales": 3314.147509232053
+    },
+    {
+      "date": "2026-09-03",
+      "predicted_sales": 3316.260598638666
+    },
+    {
+      "date": "2026-09-04",
+      "predicted_sales": 3318.3736880452793
+    },
+    {
+      "date": "2026-09-05",
+      "predicted_sales": 3320.4867774518925
+    },
+    {
+      "date": "2026-09-06",
+      "predicted_sales": 3322.5998668585057
+    },
+    {
+      "date": "2026-09-07",
+      "predicted_sales": 3324.712956265119
+    },
+    {
+      "date": "2026-09-08",
+      "predicted_sales": 3326.826045671732
+    },
+    {
+      "date": "2026-09-09",
+      "predicted_sales": 3328.9391350783453
+    },
+    {
+      "date": "2026-09-10",
+      "predicted_sales": 3331.0522244849585
+    },
+    {
+      "date": "2026-09-11",
+      "predicted_sales": 3333.1653138915717
+    },
+    {
+      "date": "2026-09-12",
+      "predicted_sales": 3335.278403298185
+    },
+    {
+      "date": "2026-09-13",
+      "predicted_sales": 3337.391492704798
+    },
+    {
+      "date": "2026-09-14",
+      "predicted_sales": 3339.5045821114113
+    },
+    {
+      "date": "2026-09-15",
+      "predicted_sales": 3341.6176715180245
+    },
+    {
+      "date": "2026-09-16",
+      "predicted_sales": 3343.7307609246377
+    },
+    {
+      "date": "2026-09-17",
+      "predicted_sales": 3345.843850331251
+    },
+    {
+      "date": "2026-09-18",
+      "predicted_sales": 3347.956939737864
+    },
+    {
+      "date": "2026-09-19",
+      "predicted_sales": 3350.0700291444773
+    },
+    {
+      "date": "2026-09-20",
+      "predicted_sales": 3352.1831185510905
+    },
+    {
+      "date": "2026-09-21",
+      "predicted_sales": 3354.2962079577037
+    },
+    {
+      "date": "2026-09-22",
+      "predicted_sales": 3356.409297364317
+    },
+    {
+      "date": "2026-09-23",
+      "predicted_sales": 3358.52238677093
+    },
+    {
+      "date": "2026-09-24",
+      "predicted_sales": 3360.6354761775433
+    },
+    {
+      "date": "2026-09-25",
+      "predicted_sales": 3362.7485655841565
+    },
+    {
+      "date": "2026-09-26",
+      "predicted_sales": 3364.8616549907697
+    },
+    {
+      "date": "2026-09-27",
+      "predicted_sales": 3366.974744397383
+    },
+    {
+      "date": "2026-09-28",
+      "predicted_sales": 3369.0878338039956
+    }
+  ],
+  "churn_risk_analysis": {
+    "feature_importances": {
+      "Amount": 0.00020815123730497039,
+      "Quantity": -0.01587178007278927,
+      "Margin": 0.769455794818209,
+      "LTV": -0.00018148080342173797,
+      "CAC": 0.05930264319564878
+    },
+    "high_risk_customers": [
+      {
+        "CustomerID": "CUST123",
+        "churn_probability": 0.8549042286310446
+      },
+      {
+        "CustomerID": "CUST136",
+        "churn_probability": 0.8371042348239442
+      },
+      {
+        "CustomerID": "CUST108",
+        "churn_probability": 0.8366984097239739
+      },
+      {
+        "CustomerID": "CUST116",
+        "churn_probability": 0.8176903037279745
+      },
+      {
+        "CustomerID": "CUST105",
+        "churn_probability": 0.80850053557358
+      },
+      {
+        "CustomerID": "CUST105",
+        "churn_probability": 0.7989103915344267
+      },
+      {
+        "CustomerID": "CUST109",
+        "churn_probability": 0.7946099849718196
+      },
+      {
+        "CustomerID": "CUST110",
+        "churn_probability": 0.7859326296816862
+      },
+      {
+        "CustomerID": "CUST120",
+        "churn_probability": 0.7854873052734144
+      },
+      {
+        "CustomerID": "CUST107",
+        "churn_probability": 0.7808662879704468
+      }
+    ]
+  }
+}

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AnalytixAI - Upload</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"on-error-container": "#ffdad6", "on-tertiary-fixed": "#210f47", "surface-container-highest": "#37333e", "on-tertiary-fixed-variant": "#4e3d75", "outline-variant": "#4a4458", "inverse-surface": "#e7e0ee", "on-tertiary-container": "#e9ddff", "inverse-on-surface": "#322f3a", "error-container": "#93000a", "tertiary-container": "#4e3d75", "primary-fixed-dim": "#99cbff", "on-background": "#e7e0ee", "surface-variant": "#37333e", "on-surface-variant": "#ccc2db", "surface-container-lowest": "#100d16", "tertiary-fixed-dim": "#d0bcfe", "on-primary-fixed-variant": "#004a78", background: "#15121c", "secondary-fixed": "#cfe5ff", "on-secondary-container": "#cfe5ff", outline: "#958da4", "surface-container-low": "#1d1a24", "on-surface": "#e7e0ee", "secondary-container": "#124a73", "on-primary-fixed": "#001d34", "surface-bright": "#3b3743", "secondary-fixed-dim": "#9dcbfb", "inverse-primary": "#00629e", tertiary: "#d0bcfe", "surface-tint": "#99cbff", "on-secondary": "#003355", surface: "#15121c", "on-primary-container": "#cfe5ff", "on-tertiary": "#37265d", "surface-container": "#211e28", "primary-fixed": "#cfe5ff", error: "#ffb4ab", secondary: "#9dcbfb", "on-error": "#690005", "primary-container": "#004a78", "surface-container-high": "#2c2833", "surface-dim": "#15121c", "on-secondary-fixed": "#001d34", "tertiary-fixed": "#e9ddff", "on-primary": "#003355", "on-secondary-fixed-variant": "#124a73", primary: "#99cbff"}, borderRadius: {DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem"}, spacing: {"container-padding-mobile": "1rem", "stack-md": "1rem", unit: "4px", "stack-sm": "0.5rem", "container-padding-desktop": "2rem", gutter: "1.5rem", "stack-lg": "2rem"}, fontFamily: {"headline-lg": ["Outfit"], "label-sm": ["Inter"], "display-lg": ["Outfit"], "label-md": ["Inter"], "headline-md": ["Outfit"], "body-lg": ["Inter"], "headline-lg-mobile": ["Outfit"], "body-md": ["Inter"], headline: ["Outfit"], display: ["Outfit"], body: ["Inter"], label: ["Inter"]}, fontSize: {"headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600"}], "label-sm": ["12px", {lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600"}], "display-lg": ["48px", {lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700"}], "label-md": ["14px", {lineHeight: "20px", letterSpacing: "0.02em", fontWeight: "500"}], "headline-md": ["24px", {lineHeight: "32px", fontWeight: "600"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "headline-lg-mobile": ["28px", {lineHeight: "36px", fontWeight: "600"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}]}}}};</script>
+<style>
+        body {
+            background-color: #020617; /* Base background from spec */
+            color: #dae2fd;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-left: 1px solid rgba(255, 255, 255, 0.04);
+            border-right: 1px solid rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.15);
+        }
+        .input-glass {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .input-glass:focus {
+            border-color: #7c3aed;
+            box-shadow: 0 0 10px rgba(124, 58, 237, 0.2);
+            outline: none;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased overflow-x-hidden">
+<!-- SideNavBar (from JSON) -->
+<nav class="h-screen w-64 fixed left-0 top-0 bg-surface/65 backdrop-blur-xl border-r border-white/10 shadow-[0_0_20px_rgba(124,58,237,0.1)] flex flex-col h-full py-6 z-50">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">analytics</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">AnalytixAI</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Enterprise Tier</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto space-y-1 px-2">
+<!-- Tabs -->
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<!-- Active Tab -->
+<a class="flex items-center gap-3 px-4 py-2 bg-primary-container/20 text-primary border-r-2 border-primary rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="upload_file" style="font-variation-settings: 'FILL' 1;">upload_file</span>
+<span class="font-label-md text-label-md font-semibold">Upload</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="forum">forum</span>
+<span class="font-label-md text-label-md">Chat</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+<span class="font-label-md text-label-md">EDA</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<span class="font-label-md text-label-md">Visualizations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+<span class="font-label-md text-label-md">SQL</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="online_prediction">online_prediction</span>
+<span class="font-label-md text-label-md">Predictions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="lightbulb">lightbulb</span>
+<span class="font-label-md text-label-md">Insights</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+<span class="font-label-md text-label-md">Agents</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span class="font-label-md text-label-md">Admin</span>
+</a>
+</div>
+<div class="px-4 mt-auto pt-6 border-t border-white/5">
+<button class="w-full py-2 px-4 rounded-lg bg-gradient-to-r from-primary-container to-primary-container/80 text-white font-label-md text-label-md glow-hover transition-all duration-300">
+                Upgrade Plan
+            </button>
+</div>
+</nav>
+<!-- TopNavBar (from JSON) -->
+<header class="fixed top-0 right-0 left-64 h-16 z-40 bg-surface/65 backdrop-blur-xl border-b border-white/10 shadow-sm flex justify-between items-center px-6">
+<!-- Search Bar (on_left) -->
+<div class="w-96 relative focus-within:ring-1 focus-within:ring-primary/50 rounded-lg transition-all duration-200">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none" data-icon="search">search</span>
+<input class="w-full bg-surface-container/50 border-none rounded-lg pl-10 pr-4 py-2 text-on-surface placeholder:text-on-surface-variant focus:ring-0 focus:outline-none font-body-md text-body-md" placeholder="Search datasets, connections..." type="text"/>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-all duration-200 rounded-full hover:bg-surface-variant/30">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-all duration-200 rounded-full hover:bg-surface-variant/30">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-all duration-200 rounded-full hover:bg-surface-variant/30">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="h-8 w-px bg-white/10 mx-2"></div>
+<div class="w-9 h-9 rounded-full border border-primary/30 overflow-hidden cursor-pointer">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A futuristic, cyberpunk-style user avatar profile picture, featuring glowing neon accents and a dark, moody aesthetic. The avatar is highly detailed, professional yet stylish, fitting a modern SaaS platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBr9E9tzDQt21NQss_BydXnCTn60_x12-Qa8-6v4yeMSFGJFeFqi9uIjSzRehYlKo1hA6_CaVGCq5yk0SKZKqMABhYnyE1_M7wiKkLndqu1yRDxhg2WTGlfLoBMcpvmZEfpbETPWwCfKik6RfD4JtDNeEokg3gVWVyjTu7Hoblala1uzfLLorM3ute3ka7poGEKXUCns-WVtfBHD9K3zFhx7Zkf_QfhMSR4G3P37X-q90WW7HY-WYmtBw"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="pl-64 pt-16 min-h-screen">
+<div class="p-container-padding-desktop max-w-7xl mx-auto space-y-stack-lg">
+<!-- Header -->
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Data Upload &amp; Connections</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">Ingest flat files or connect directly to your data warehouse.</p>
+</div>
+<div class="grid grid-cols-12 gap-6">
+<!-- Left Column (Drag & Drop + Progress) -->
+<div class="col-span-12 lg:col-span-8 space-y-6">
+<!-- Drag & Drop Zone -->
+<div class="glass-panel rounded-xl p-8 border-dashed border-2 border-primary/30 hover:border-primary/60 transition-colors duration-300 group cursor-pointer relative overflow-hidden flex flex-col items-center justify-center min-h-[320px]">
+<!-- Subtle background glow -->
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="flex gap-6 mb-6 relative z-10">
+<div class="w-16 h-16 rounded-2xl bg-surface-container flex items-center justify-center border border-white/10 shadow-lg group-hover:-translate-y-2 transition-transform duration-300 delay-75">
+<span class="material-symbols-outlined text-3xl text-secondary" style="font-variation-settings: 'FILL' 1;">description</span>
+</div>
+<div class="w-16 h-16 rounded-2xl bg-surface-container flex items-center justify-center border border-white/10 shadow-lg group-hover:-translate-y-2 transition-transform duration-300 delay-150">
+<span class="material-symbols-outlined text-3xl text-tertiary" style="font-variation-settings: 'FILL' 1;">data_object</span>
+</div>
+<div class="w-16 h-16 rounded-2xl bg-surface-container flex items-center justify-center border border-white/10 shadow-lg group-hover:-translate-y-2 transition-transform duration-300 delay-200">
+<span class="material-symbols-outlined text-3xl text-primary" style="font-variation-settings: 'FILL' 1;">table</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 relative z-10">Drag &amp; Drop Files Here</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 relative z-10">Supports CSV, JSON, Parquet, and Excel formats.</p>
+<button class="relative z-10 px-6 py-2.5 rounded-lg bg-surface-container border border-primary/50 text-primary font-label-md text-label-md hover:bg-primary/10 transition-colors">
+                            Browse Files
+                        </button>
+</div>
+<!-- Upload Progress List -->
+<div class="glass-panel rounded-xl p-6">
+<div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">sync</span> Active Ingestions
+                            </h3>
+</div>
+<div class="space-y-4">
+<!-- Progress Item 1 -->
+<div class="bg-surface-container/40 p-4 rounded-lg border border-white/5">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">description</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">q3_sales_data_final.csv</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Processing... 45,201 / 150,000 rows</p>
+</div>
+</div>
+<span class="px-2 py-1 rounded bg-secondary/10 text-secondary font-label-sm text-label-sm uppercase tracking-wider">Validating</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden mt-3">
+<div class="h-full bg-secondary w-[30%] shadow-[0_0_10px_rgba(76,215,246,0.5)]"></div>
+</div>
+</div>
+<!-- Progress Item 2 -->
+<div class="bg-surface-container/40 p-4 rounded-lg border border-white/5">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary">data_object</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">user_events_dump.json</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Complete • 1.2M rows ingested</p>
+</div>
+</div>
+<span class="px-2 py-1 rounded bg-tertiary/10 text-tertiary font-label-sm text-label-sm uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Success
+                                    </span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden mt-3">
+<div class="h-full bg-tertiary w-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (DB Connections) -->
+<div class="col-span-12 lg:col-span-4 space-y-6">
+<!-- Connection Form Card -->
+<div class="glass-panel rounded-xl p-6">
+<div class="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary">database</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Connect Database</h3>
+</div>
+<form class="space-y-5">
+<!-- Engine Select -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2 uppercase tracking-wider">Engine</label>
+<div class="relative">
+<select class="w-full input-glass rounded-lg px-4 py-2.5 text-on-surface appearance-none font-body-md text-body-md pr-10">
+<option class="bg-surface" value="postgres">PostgreSQL</option>
+<option class="bg-surface" value="mysql">MySQL</option>
+<option class="bg-surface" value="sqlite">SQLite</option>
+<option class="bg-surface" value="snowflake">Snowflake</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Connection String -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2 uppercase tracking-wider">Connection URI</label>
+<input class="w-full input-glass rounded-lg px-4 py-2.5 text-on-surface placeholder:text-surface-variant font-body-md text-body-md" placeholder="postgresql://user:pass@host:5432/db" type="text"/>
+</div>
+<!-- Advanced Options (Collapsible visual) -->
+<div class="border border-white/10 rounded-lg p-4 bg-surface-container/20">
+<div class="flex items-center justify-between cursor-pointer group">
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface transition-colors">Advanced Settings (SSL, Schema)</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-on-surface transition-colors">chevron_right</span>
+</div>
+</div>
+<button class="w-full mt-4 py-3 rounded-lg bg-gradient-to-r from-primary-container to-primary-container/80 text-white font-label-md text-label-md glow-hover transition-all duration-300 flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">cable</span>
+                                Test Connection &amp; Save
+                            </button>
+</form>
+</div>
+<!-- Info/Tip Card -->
+<div class="glass-panel rounded-xl p-5 border-l-2 border-l-secondary">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-secondary">info</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface mb-1">Secure Connections</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">All database credentials are encrypted at rest using AES-256. For enterprise VPC peering, contact your admin.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

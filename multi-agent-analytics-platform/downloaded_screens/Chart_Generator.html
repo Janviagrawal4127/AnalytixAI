@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AnalytixAI - Visualizations</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Outfit:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"tertiary-fixed-dim": "#d0bcfe", "surface-variant": "#37333e", "primary-fixed": "#cfe5ff", tertiary: "#d0bcfe", "on-error-container": "#ffdad6", "on-primary-fixed": "#001d34", error: "#ffb4ab", "surface-container-high": "#2c2833", "on-tertiary-fixed-variant": "#4e3d75", "on-surface-variant": "#ccc2db", "on-primary": "#003355", "on-error": "#690005", primary: "#99cbff", outline: "#958da4", "on-tertiary-container": "#e9ddff", "primary-fixed-dim": "#99cbff", "on-primary-container": "#cfe5ff", "on-tertiary": "#37265d", "on-secondary-container": "#cfe5ff", "on-secondary-fixed-variant": "#124a73", "inverse-surface": "#e7e0ee", "surface-container-lowest": "#100d16", "error-container": "#93000a", secondary: "#9dcbfb", "surface-tint": "#99cbff", "on-surface": "#e7e0ee", "on-primary-fixed-variant": "#004a78", "surface-container": "#211e28", "inverse-on-surface": "#322f3a", background: "#15121c", "primary-container": "#004a78", "outline-variant": "#4a4458", "on-secondary": "#003355", "secondary-fixed": "#cfe5ff", "on-background": "#e7e0ee", "surface-container-low": "#1d1a24", "surface-container-highest": "#37333e", "secondary-fixed-dim": "#9dcbfb", "tertiary-container": "#4e3d75", "on-tertiary-fixed": "#210f47", "on-secondary-fixed": "#001d34", "tertiary-fixed": "#e9ddff", "secondary-container": "#124a73", "surface-dim": "#15121c", "inverse-primary": "#00629e", "surface-bright": "#3b3743", surface: "#15121c"}, borderRadius: {DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem"}, spacing: {"stack-md": "1rem", "container-padding-desktop": "2rem", "stack-lg": "2rem", unit: "4px", "stack-sm": "0.5rem", "container-padding-mobile": "1rem", gutter: "1.5rem"}, fontFamily: {"body-lg": ["Inter"], "headline-lg": ["Outfit"], "label-sm": ["Inter"], "headline-lg-mobile": ["Outfit"], "headline-md": ["Outfit"], "body-md": ["Inter"], "display-lg": ["Outfit"], "label-md": ["Inter"], headline: ["Outfit"], display: ["Outfit"], body: ["Inter"], label: ["Inter"]}, fontSize: {"body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600"}], "label-sm": ["12px", {lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600"}], "headline-lg-mobile": ["28px", {lineHeight: "36px", fontWeight: "600"}], "headline-md": ["24px", {lineHeight: "32px", fontWeight: "600"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "display-lg": ["48px", {lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700"}], "label-md": ["14px", {lineHeight: "20px", letterSpacing: "0.02em", fontWeight: "500"}]}, backgroundImage: {"gradient-radial": "radial-gradient(var(--tw-gradient-stops))"}}}};</script>
+<style>
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .glow-button {
+            background: linear-gradient(135deg, theme('colors.primary-container'), theme('colors.primary-fixed-variant'));
+            transition: all 0.3s ease;
+        }
+        .glow-button:hover {
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .chart-grid-line {
+            stroke: rgba(255, 255, 255, 0.03);
+            stroke-width: 1;
+        }
+        
+        .chart-axis-text {
+            fill: theme('colors.on-surface-variant');
+            font-size: 12px;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Custom Scrollbar for side panel */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Input styling overrides */
+        input[type="text"], select {
+            background-color: rgba(0,0,0,0.2) !important;
+            border-color: rgba(255,255,255,0.1) !important;
+            color: theme('colors.on-surface') !important;
+        }
+        input[type="text"]:focus, select:focus {
+            border-color: theme('colors.primary') !important;
+            box-shadow: 0 0 0 1px theme('colors.primary'), 0 0 10px rgba(124,58,237,0.2) !important;
+        }
+        
+        /* Range slider styling */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: theme('colors.primary');
+            cursor: pointer;
+            margin-top: -6px;
+            box-shadow: 0 0 10px rgba(124,58,237,0.5);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex overflow-hidden font-body-md">
+<!-- SideNavBar (Injected & Rendered) -->
+<nav class="h-screen w-64 fixed left-0 top-0 bg-surface/65 backdrop-blur-xl border-r border-white/10 shadow-[0_0_20px_rgba(124,58,237,0.1)] z-50 flex flex-col h-full py-6">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">analytics</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">AnalytixAI</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Enterprise Tier</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto px-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">upload_file</span>
+<span class="font-label-md text-label-md">Upload</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">forum</span>
+<span class="font-label-md text-label-md">Chat</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="font-label-md text-label-md">EDA</span>
+</a>
+<!-- Active Tab -->
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg bg-primary-container/20 text-primary border-r-2 border-primary active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bar_chart</span>
+<span class="font-label-md text-label-md font-bold">Visualizations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">database</span>
+<span class="font-label-md text-label-md">SQL</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">online_prediction</span>
+<span class="font-label-md text-label-md">Predictions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">lightbulb</span>
+<span class="font-label-md text-label-md">Insights</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="font-label-md text-label-md">Agents</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+<span class="font-label-md text-label-md">Admin</span>
+</a>
+</div>
+<div class="mt-auto px-4 pt-4">
+<button class="w-full glow-button rounded-lg py-3 flex items-center justify-center gap-2 text-white font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">workspace_premium</span>
+                Upgrade Plan
+            </button>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="ml-64 flex-1 flex flex-col relative w-full h-screen">
+<!-- TopNavBar (Injected & Rendered) -->
+<header class="fixed top-0 right-0 left-64 h-16 z-40 bg-surface/65 backdrop-blur-xl border-b border-white/10 shadow-sm flex justify-between items-center px-6">
+<div class="flex items-center w-96 relative group focus-within:ring-1 focus-within:ring-primary/50 rounded-lg">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-surface-container/50 border-none rounded-lg pl-10 pr-4 py-2 text-on-surface placeholder:text-on-surface-variant/50 focus:ring-0 focus:outline-none font-body-md text-body-md" placeholder="Search datasets, visualizations..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-all duration-200 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-all duration-200">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-all duration-200">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full ml-2 border border-primary/30 overflow-hidden cursor-pointer hover:border-primary transition-colors">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSU0qGioxYrmMnLEtJBVyJF_BIf1SBHdaaHs0QfF2Hy3aHnCcuUCRRRrOw0sCVwAlYBQKYUPxj-5dN5gLqqsXl5H2CwByaRecvUxD9eh-BVZE8h_AMkdgI4i3Bt7ZxNhAz8pYuTCTIfCSItu-kIHuWXqss22N0_glH6UI3vzbaNfPPlIATkIZtC8kkBQ60t3XQcVGC8fRJc00fW95JQDmPkT5B49JcABZMBlY3SBUKPKr5B0w_TZwKVQ"/>
+</div>
+</div>
+</header>
+<!-- Split Pane Layout for Visualizations -->
+<main class="flex-1 pt-16 flex overflow-hidden bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-surface-bright/20 via-background to-background">
+<!-- Left Sidebar (Config Panel) -->
+<aside class="w-80 border-r border-white/5 glass-panel h-full overflow-y-auto z-10 flex flex-col">
+<div class="p-4 border-b border-white/5 flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md text-on-surface text-[18px]">Chart Configuration</h2>
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-[20px]">refresh</span></button>
+</div>
+<div class="p-4 flex flex-col gap-6">
+<!-- Chart Type Selection -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Chart Type</label>
+<div class="grid grid-cols-3 gap-2">
+<button class="flex flex-col items-center justify-center p-2 rounded-lg bg-primary-container/20 border border-primary text-primary transition-colors">
+<span class="material-symbols-outlined mb-1">bar_chart</span>
+<span class="text-[10px] font-semibold">Bar</span>
+</button>
+<button class="flex flex-col items-center justify-center p-2 rounded-lg bg-surface-container border border-white/5 text-on-surface-variant hover:bg-surface-variant/50 transition-colors">
+<span class="material-symbols-outlined mb-1">show_chart</span>
+<span class="text-[10px] font-semibold">Line</span>
+</button>
+<button class="flex flex-col items-center justify-center p-2 rounded-lg bg-surface-container border border-white/5 text-on-surface-variant hover:bg-surface-variant/50 transition-colors">
+<span class="material-symbols-outlined mb-1">area_chart</span>
+<span class="text-[10px] font-semibold">Area</span>
+</button>
+<button class="flex flex-col items-center justify-center p-2 rounded-lg bg-surface-container border border-white/5 text-on-surface-variant hover:bg-surface-variant/50 transition-colors">
+<span class="material-symbols-outlined mb-1">scatter_plot</span>
+<span class="text-[10px] font-semibold">Scatter</span>
+</button>
+<button class="flex flex-col items-center justify-center p-2 rounded-lg bg-surface-container border border-white/5 text-on-surface-variant hover:bg-surface-variant/50 transition-colors">
+<span class="material-symbols-outlined mb-1">pie_chart</span>
+<span class="text-[10px] font-semibold">Pie</span>
+</button>
+<button class="flex flex-col items-center justify-center p-2 rounded-lg bg-surface-container border border-white/5 text-on-surface-variant hover:bg-surface-variant/50 transition-colors">
+<span class="material-symbols-outlined mb-1">map</span>
+<span class="text-[10px] font-semibold">Heat</span>
+</button>
+</div>
+</div>
+<!-- Data Mapping -->
+<div class="flex flex-col gap-4">
+<h3 class="font-label-sm text-label-sm text-primary uppercase tracking-wider">Data Mapping</h3>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">X-Axis (Dimension)</label>
+<select class="w-full rounded-md text-sm py-2">
+<option>Month (Date)</option>
+<option>Region</option>
+<option>Product Category</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Y-Axis (Measure)</label>
+<select class="w-full rounded-md text-sm py-2">
+<option>Total Revenue ($)</option>
+<option>Active Users</option>
+<option>Conversion Rate (%)</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Group By (Optional)</label>
+<select class="w-full rounded-md text-sm py-2">
+<option>None</option>
+<option>Customer Segment</option>
+<option>Subscription Tier</option>
+</select>
+</div>
+</div>
+<div class="h-[1px] w-full bg-white/5"></div>
+<!-- Styling Options -->
+<div class="flex flex-col gap-4">
+<h3 class="font-label-sm text-label-sm text-primary uppercase tracking-wider">Appearance</h3>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Color Palette</label>
+<div class="flex gap-2">
+<div class="w-full h-8 rounded-md cursor-pointer border border-primary p-1 bg-surface-container">
+<div class="w-full h-full rounded-sm flex">
+<div class="flex-1 bg-primary"></div>
+<div class="flex-1 bg-secondary"></div>
+<div class="flex-1 bg-tertiary"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Show Gridlines</label>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-9 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Show Legend</label>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-9 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<div class="mt-auto p-4 border-t border-white/5">
+<button class="w-full glow-button rounded-lg py-2 flex items-center justify-center gap-2 text-white font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">magic_button</span>
+                        Generate Chart
+                    </button>
+</div>
+</aside>
+<!-- Right Canvas (Preview Area) -->
+<section class="flex-1 p-6 flex flex-col h-full overflow-hidden relative">
+<!-- Canvas Header & Actions -->
+<div class="flex justify-between items-center mb-6">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Revenue Growth by Segment</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Monthly recurring revenue projection for Q3.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 transition-colors text-sm">
+<span class="material-symbols-outlined text-[18px]">code</span>
+                            Copy Config
+                        </button>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-secondary text-secondary hover:bg-secondary/10 transition-colors text-sm">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                            Export SVG
+                        </button>
+</div>
+</div>
+<!-- Main Chart Container -->
+<div class="flex-1 glass-panel rounded-xl p-6 flex flex-col relative overflow-hidden group">
+<!-- Decorative ambient light behind chart -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+<!-- Legend -->
+<div class="flex justify-end gap-6 mb-4 relative z-10">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-sm bg-primary shadow-[0_0_8px_rgba(124,58,237,0.5)]"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Enterprise</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-sm bg-secondary shadow-[0_0_8px_rgba(76,215,246,0.5)]"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Pro</span>
+</div>
+</div>
+<!-- Simulated Recharts Area/Bar SVG -->
+<div class="flex-1 w-full relative z-10">
+<svg class="overflow-visible" height="100%" preserveaspectratio="none" viewbox="0 0 800 400" width="100%">
+<defs>
+<lineargradient id="gradientPrimary" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="var(--tw-colors-primary)" stop-opacity="0.8"></stop>
+<stop offset="100%" stop-color="var(--tw-colors-primary)" stop-opacity="0.1"></stop>
+</lineargradient>
+<lineargradient id="gradientSecondary" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="var(--tw-colors-secondary)" stop-opacity="0.8"></stop>
+<stop offset="100%" stop-color="var(--tw-colors-secondary)" stop-opacity="0.1"></stop>
+</lineargradient>
+</defs>
+<!-- Grid Lines -->
+<path class="chart-grid-line" d="M 50 350 L 780 350" stroke-dasharray="4 4"></path>
+<path class="chart-grid-line" d="M 50 275 L 780 275" stroke-dasharray="4 4"></path>
+<path class="chart-grid-line" d="M 50 200 L 780 200" stroke-dasharray="4 4"></path>
+<path class="chart-grid-line" d="M 50 125 L 780 125" stroke-dasharray="4 4"></path>
+<path class="chart-grid-line" d="M 50 50 L 780 50" stroke-dasharray="4 4"></path>
+<!-- Y-Axis Labels -->
+<text class="chart-axis-text" text-anchor="end" x="40" y="355">0k</text>
+<text class="chart-axis-text" text-anchor="end" x="40" y="280">25k</text>
+<text class="chart-axis-text" text-anchor="end" x="40" y="205">50k</text>
+<text class="chart-axis-text" text-anchor="end" x="40" y="130">75k</text>
+<text class="chart-axis-text" text-anchor="end" x="40" y="55">100k</text>
+<!-- X-Axis Labels -->
+<text class="chart-axis-text" text-anchor="middle" x="90" y="375">Jan</text>
+<text class="chart-axis-text" text-anchor="middle" x="210" y="375">Feb</text>
+<text class="chart-axis-text" text-anchor="middle" x="330" y="375">Mar</text>
+<text class="chart-axis-text" text-anchor="middle" x="450" y="375">Apr</text>
+<text class="chart-axis-text" text-anchor="middle" x="570" y="375">May</text>
+<text class="chart-axis-text" text-anchor="middle" x="690" y="375">Jun</text>
+<!-- Data Series 1 (Secondary - Pro) Area -->
+<path d="M 90 350 L 90 290 L 210 240 L 330 250 L 450 180 L 570 150 L 690 120 L 690 350 Z" fill="url(#gradientSecondary)"></path>
+<path class="drop-shadow-[0_0_8px_rgba(76,215,246,0.5)]" d="M 90 290 L 210 240 L 330 250 L 450 180 L 570 150 L 690 120" fill="none" stroke="var(--tw-colors-secondary)" stroke-width="3"></path>
+<!-- Data Points Series 1 -->
+<circle cx="90" cy="290" fill="var(--tw-colors-secondary)" r="4"></circle>
+<circle cx="210" cy="240" fill="var(--tw-colors-secondary)" r="4"></circle>
+<circle cx="330" cy="250" fill="var(--tw-colors-secondary)" r="4"></circle>
+<circle cx="450" cy="180" fill="var(--tw-colors-secondary)" r="4"></circle>
+<circle cx="570" cy="150" fill="var(--tw-colors-secondary)" r="4"></circle>
+<circle cx="690" cy="120" fill="var(--tw-colors-secondary)" r="4"></circle>
+<!-- Data Series 2 (Primary - Enterprise) Area -->
+<path d="M 90 350 L 90 320 L 210 280 L 330 210 L 450 140 L 570 90 L 690 60 L 690 350 Z" fill="url(#gradientPrimary)"></path>
+<path class="drop-shadow-[0_0_12px_rgba(124,58,237,0.6)]" d="M 90 320 L 210 280 L 330 210 L 450 140 L 570 90 L 690 60" fill="none" stroke="var(--tw-colors-primary)" stroke-width="3"></path>
+<!-- Data Points Series 2 -->
+<circle cx="90" cy="320" fill="var(--tw-colors-background)" r="5" stroke="var(--tw-colors-primary)" stroke-width="2"></circle>
+<circle cx="210" cy="280" fill="var(--tw-colors-background)" r="5" stroke="var(--tw-colors-primary)" stroke-width="2"></circle>
+<circle cx="330" cy="210" fill="var(--tw-colors-background)" r="5" stroke="var(--tw-colors-primary)" stroke-width="2"></circle>
+<!-- Active Hover State Point -->
+<circle class="animate-pulse" cx="450" cy="140" fill="var(--tw-colors-primary)" r="7" shadow="0 0 10px var(--tw-colors-primary)"></circle>
+<line stroke="rgba(255,255,255,0.2)" stroke-dasharray="2 2" stroke-width="1" x1="450" x2="450" y1="50" y2="350"></line>
+<circle cx="570" cy="90" fill="var(--tw-colors-background)" r="5" stroke="var(--tw-colors-primary)" stroke-width="2"></circle>
+<circle cx="690" cy="60" fill="var(--tw-colors-background)" r="5" stroke="var(--tw-colors-primary)" stroke-width="2"></circle>
+</svg>
+<!-- Simulated Interactive Tooltip -->
+<div class="absolute bg-surface-container/90 backdrop-blur-md border border-white/10 rounded-lg p-3 shadow-lg flex flex-col gap-2 z-20 pointer-events-none" style="left: calc(450px/800 * 100%); top: 20%; transform: translateX(-50%);">
+<span class="font-label-sm text-label-sm text-on-surface-variant border-b border-white/10 pb-1">April 2024</span>
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-sm text-on-surface">Enterprise</span>
+<span class="text-sm font-bold text-white ml-auto">$71,000</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-sm text-on-surface">Pro</span>
+<span class="text-sm font-bold text-white ml-auto">$58,500</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>

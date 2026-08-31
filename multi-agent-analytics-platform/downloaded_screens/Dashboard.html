@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AnalytixAI - Central KPI Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"on-error-container": "#ffdad6", "on-tertiary-fixed": "#210f47", "surface-container-highest": "#37333e", "on-tertiary-fixed-variant": "#4e3d75", "outline-variant": "#4a4458", "inverse-surface": "#e7e0ee", "on-tertiary-container": "#e9ddff", "inverse-on-surface": "#322f3a", "error-container": "#93000a", "tertiary-container": "#4e3d75", "primary-fixed-dim": "#99cbff", "on-background": "#e7e0ee", "surface-variant": "#37333e", "on-surface-variant": "#ccc2db", "surface-container-lowest": "#100d16", "tertiary-fixed-dim": "#d0bcfe", "on-primary-fixed-variant": "#004a78", background: "#15121c", "secondary-fixed": "#cfe5ff", "on-secondary-container": "#cfe5ff", outline: "#958da4", "surface-container-low": "#1d1a24", "on-surface": "#e7e0ee", "secondary-container": "#124a73", "on-primary-fixed": "#001d34", "surface-bright": "#3b3743", "secondary-fixed-dim": "#9dcbfb", "inverse-primary": "#00629e", tertiary: "#d0bcfe", "surface-tint": "#99cbff", "on-secondary": "#003355", surface: "#15121c", "on-primary-container": "#cfe5ff", "on-tertiary": "#37265d", "surface-container": "#211e28", "primary-fixed": "#cfe5ff", error: "#ffb4ab", secondary: "#9dcbfb", "on-error": "#690005", "primary-container": "#004a78", "surface-container-high": "#2c2833", "surface-dim": "#15121c", "on-secondary-fixed": "#001d34", "tertiary-fixed": "#e9ddff", "on-primary": "#003355", "on-secondary-fixed-variant": "#124a73", primary: "#99cbff"}, borderRadius: {DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem"}, spacing: {"container-padding-mobile": "1rem", "stack-md": "1rem", unit: "4px", "stack-sm": "0.5rem", "container-padding-desktop": "2rem", gutter: "1.5rem", "stack-lg": "2rem"}, fontFamily: {"headline-lg": ["Outfit"], "label-sm": ["Inter"], "display-lg": ["Outfit"], "label-md": ["Inter"], "headline-md": ["Outfit"], "body-lg": ["Inter"], "headline-lg-mobile": ["Outfit"], "body-md": ["Inter"], headline: ["Outfit"], display: ["Outfit"], body: ["Inter"], label: ["Inter"]}, fontSize: {"headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600"}], "label-sm": ["12px", {lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600"}], "display-lg": ["48px", {lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700"}], "label-md": ["14px", {lineHeight: "20px", letterSpacing: "0.02em", fontWeight: "500"}], "headline-md": ["24px", {lineHeight: "32px", fontWeight: "600"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "headline-lg-mobile": ["28px", {lineHeight: "36px", fontWeight: "600"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}]}}}};</script>
+<style>
+        .glass-panel {
+            background-color: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-left: 1px solid rgba(255, 255, 255, 0.04);
+            border-right: 1px solid rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.15);
+            border-color: rgba(124, 58, 237, 0.3);
+        }
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background-color: rgba(23, 31, 51, 0.8);
+            white-space: nowrap;
+            box-sizing: border-box;
+        }
+        .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            padding-right: 100%;
+            box-sizing: content-box;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-name: ticker;
+            animation-duration: 30s;
+        }
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 right-0 left-0 md:left-64 h-16 z-40 bg-surface/65 backdrop-blur-xl border-b border-white/10 shadow-sm flex justify-between items-center px-6 w-full">
+<div class="flex items-center gap-4">
+<span class="md:hidden font-headline-md text-headline-md font-bold text-primary">AnalytixAI</span>
+<!-- Search Bar placeholder -->
+<div class="hidden md:flex items-center bg-black/20 border border-white/10 rounded-full px-4 py-2 focus-within:ring-1 focus-within:ring-primary/50 focus-within:border-primary/50 transition-colors w-64">
+<span class="material-symbols-outlined text-on-surface-variant mr-2" style="font-size: 18px;">search</span>
+<input class="bg-transparent border-none outline-none text-label-md font-label-md text-on-surface placeholder-on-surface-variant/50 w-full p-0 focus:ring-0" placeholder="Search Data, Insights..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-all duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-all duration-200">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-all duration-200">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-white/20">
+<img class="w-full h-full object-cover" data-alt="A futuristic UI profile avatar portrait of a professional analytics user, high contrast, neon purple edge lighting, cyberpunk data aesthetic, highly detailed face, deep shadow background. A 50-100 word description." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0j830RYKTe7tVq9duDkswJfP7R7LYIZPZaB8ERhSlC6wQHMLBw9A3ol1kNjp90-Tt5bTC1_HOeNdjzEYqkcIJk6PIZsyZlThopS7P_UnWU2RJdKoI11BkOy7t1EvvXQbGQoyuQXqCbUn-6nY8EXN78JANw7eX4cvlX9Av32hkpUAmjODrHMhGH7-S-8_TBbdw8n7n-_f0_Omi7bT1SH2U5SE0VDWTPnVe0jo4b38BZh0a_O6qqK4O-g"/>
+</div>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface/65 backdrop-blur-xl border-r border-white/10 shadow-[0_0_20px_rgba(124,58,237,0.1)] z-50 py-6">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg overflow-hidden border border-primary/30 shadow-[0_0_10px_rgba(124,58,237,0.2)]">
+<img class="w-full h-full object-cover" data-alt="A stylized glowing purple geometric logo for a high-tech AI analytics platform, isolated on a deep dark blue background, sharp edges, luminous core. A detailed 50-100 word prompt." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQNQTRrWIJ7zuJDyXGjPlLXnmSkI-QOGmQTdaoy4iqd3rN6wecOMAgb-PWgHVpF9IIjtkg6B-rnNLecUXt0T27aorDKri0webhFVBGhB76ujxl8Kf1wrJEGKDdaHImUO1Ij3yYpPYCdcTM1Lm7Jh17o0mqpns9Gt7QxwKF8HCiiL8TNeRmcqz1YJ7_L2iIolONcxnD7eUXsc0M1imBb7ahzCJ94IF8IDmng5RRHBLKAWgDNhLrpLwzCQ"/>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary leading-none">AnalytixAI</h1>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Enterprise Tier</span>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto custom-scrollbar px-2 space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 bg-primary-container/20 text-primary border-r-2 border-primary rounded-l-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">upload_file</span>
+<span class="font-label-md text-label-md">Upload</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">forum</span>
+<span class="font-label-md text-label-md">Chat</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="font-label-md text-label-md">EDA</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="font-label-md text-label-md">Visualizations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">database</span>
+<span class="font-label-md text-label-md">SQL</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">online_prediction</span>
+<span class="font-label-md text-label-md">Predictions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">lightbulb</span>
+<span class="font-label-md text-label-md">Insights</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="font-label-md text-label-md">Agents</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 transition-colors duration-200 rounded-lg active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+<span class="font-label-md text-label-md">Admin</span>
+</a>
+</nav>
+<div class="px-6 mt-6">
+<button class="w-full bg-gradient-to-r from-primary-container to-[#5B21B6] text-white font-label-md text-label-md py-2 px-4 rounded-lg hover:shadow-[0_0_20px_rgba(124,58,237,0.3)] transition-shadow duration-300">
+                Upgrade Plan
+            </button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="md:ml-64 pt-16 min-h-screen flex flex-col relative">
+<!-- Ambient Background Glows -->
+<div class="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary/10 rounded-full blur-[80px] pointer-events-none"></div>
+<!-- Agent Status Ticker -->
+<div class="ticker-wrap border-b border-white/5 py-1 z-10 relative bg-surface-container-low">
+<div class="ticker font-label-sm text-label-sm text-secondary flex gap-8 items-center">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">bolt</span> Cleaning Agent solved 14 nulls in Dataset_Alpha.</span>
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">bolt</span> SQL Agent optimized query #402 for 30% speedup.</span>
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">bolt</span> Report Agent generated Weekly Summary.</span>
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">bolt</span> Anomaly Agent detected variance in Stream B.</span>
+</div>
+</div>
+<!-- Critical Risk Alert (Conditional) -->
+<div class="bg-error-container/20 border-b border-error/30 py-2 px-6 flex justify-between items-center z-10 relative">
+<div class="flex items-center gap-3 text-error">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="font-label-md text-label-md">Critical Risk Detected: Data latency spike in Region EU-West.</span>
+</div>
+<button class="text-error hover:text-white transition-colors">
+<span class="font-label-sm text-label-sm underline">Investigate</span>
+</button>
+</div>
+<div class="p-container-padding-mobile md:p-container-padding-desktop flex-1 z-10 relative space-y-stack-lg">
+<header>
+<h2 class="font-display-lg text-display-lg text-on-surface">Central Command</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">Real-time system health and analytics pipeline status.</p>
+</header>
+<!-- KPI Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- KPI 1 -->
+<div class="glass-panel rounded-xl p-6 glow-hover transition-all duration-300 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label-md text-label-md text-on-surface-variant">Active Dataset Rows</span>
+<div class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">table_rows</span>
+</div>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface">1.2M</div>
+<div class="flex items-center gap-1 mt-1 text-tertiary">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span class="font-label-sm text-label-sm">+12% vs last week</span>
+</div>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="glass-panel rounded-xl p-6 glow-hover transition-all duration-300 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label-md text-label-md text-on-surface-variant">SQL Queries Executed</span>
+<div class="w-8 h-8 rounded bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">terminal</span>
+</div>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface">45.2k</div>
+<div class="flex items-center gap-1 mt-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-label-sm text-label-sm">Last 24 hours</span>
+</div>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="glass-panel rounded-xl p-6 glow-hover transition-all duration-300 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label-md text-label-md text-on-surface-variant">Insights Discovered</span>
+<div class="w-8 h-8 rounded bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">tips_and_updates</span>
+</div>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface">842</div>
+<div class="flex items-center gap-1 mt-1 text-tertiary">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="font-label-sm text-label-sm">34 high confidence</span>
+</div>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="glass-panel rounded-xl p-6 glow-hover transition-all duration-300 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label-md text-label-md text-on-surface-variant">Active Agent Threads</span>
+<div class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface">12</div>
+<div class="flex items-center gap-1 mt-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+<span class="font-label-sm text-label-sm">Processing concurrent tasks</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bento Grid Lower Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Chart Area (Spans 8 cols) -->
+<div class="glass-panel rounded-xl lg:col-span-8 flex flex-col">
+<div class="p-6 border-b border-white/5 flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">Data Ingestion Profiles</h3>
+<div class="flex gap-2">
+<button class="px-3 py-1 bg-surface-container-high rounded text-label-sm font-label-sm text-on-surface border border-white/10">1D</button>
+<button class="px-3 py-1 bg-primary/20 rounded text-label-sm font-label-sm text-primary border border-primary/30">1W</button>
+<button class="px-3 py-1 bg-surface-container-high rounded text-label-sm font-label-sm text-on-surface border border-white/10">1M</button>
+</div>
+</div>
+<div class="p-6 flex-1 relative min-h-[300px] flex items-end justify-between gap-2">
+<!-- Simulated Chart Grid Lines -->
+<div class="absolute inset-0 pointer-events-none p-6 flex flex-col justify-between">
+<div class="w-full h-px bg-white/[0.03]"></div>
+<div class="w-full h-px bg-white/[0.03]"></div>
+<div class="w-full h-px bg-white/[0.03]"></div>
+<div class="w-full h-px bg-white/[0.03]"></div>
+<div class="w-full h-px bg-white/[0.03]"></div>
+</div>
+<!-- Simulated Bars -->
+<div class="w-full bg-primary/40 h-[40%] rounded-t relative group"><div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-surface-container-highest px-2 py-1 rounded text-[10px] transition-opacity z-10 border border-white/10">2.1k</div></div>
+<div class="w-full bg-primary/60 h-[60%] rounded-t relative group"><div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-surface-container-highest px-2 py-1 rounded text-[10px] transition-opacity z-10 border border-white/10">3.4k</div></div>
+<div class="w-full bg-primary/30 h-[30%] rounded-t relative group"><div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-surface-container-highest px-2 py-1 rounded text-[10px] transition-opacity z-10 border border-white/10">1.8k</div></div>
+<div class="w-full bg-secondary/70 h-[85%] rounded-t relative group"><div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-surface-container-highest px-2 py-1 rounded text-[10px] transition-opacity z-10 border border-white/10">5.2k</div></div>
+<div class="w-full bg-primary/50 h-[55%] rounded-t relative group"><div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-surface-container-highest px-2 py-1 rounded text-[10px] transition-opacity z-10 border border-white/10">3.1k</div></div>
+<div class="w-full bg-primary/80 h-[90%] rounded-t relative group"><div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-surface-container-highest px-2 py-1 rounded text-[10px] transition-opacity z-10 border border-white/10">6.1k</div></div>
+<div class="w-full bg-primary/40 h-[45%] rounded-t relative group"><div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-surface-container-highest px-2 py-1 rounded text-[10px] transition-opacity z-10 border border-white/10">2.5k</div></div>
+<!-- Simulated Overlay Line -->
+<svg class="absolute inset-0 w-full h-full p-6 pointer-events-none" preserveaspectratio="none">
+<path class="opacity-80" d="M 0 200 Q 50 150 100 180 T 200 100 T 300 120 T 400 50 T 500 150" fill="none" stroke="#4cd7f6" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<!-- Secondary Info Area (Spans 4 cols) -->
+<div class="lg:col-span-4 space-y-gutter flex flex-col">
+<div class="glass-panel rounded-xl p-6 flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">System Health</h3>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">CPU Compute</span>
+<span class="font-label-sm text-label-sm text-on-surface">64%</span>
+</div>
+<div class="w-full bg-black/40 rounded-full h-1.5">
+<div class="bg-secondary h-1.5 rounded-full" style="width: 64%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Memory Allocation</span>
+<span class="font-label-sm text-label-sm text-on-surface">82%</span>
+</div>
+<div class="w-full bg-black/40 rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 82%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Storage Capacity</span>
+<span class="font-label-sm text-label-sm text-error">91%</span>
+</div>
+<div class="w-full bg-black/40 rounded-full h-1.5">
+<div class="bg-error h-1.5 rounded-full shadow-[0_0_10px_#ffb4ab]" style="width: 91%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="glass-panel rounded-xl p-6 bg-gradient-to-br from-surface to-primary-container/10 border-primary/20">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+<h4 class="font-label-md text-label-md font-bold text-primary">Auto-Optimization</h4>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mb-4">AI Agents have successfully reduced query latency by 14% over the last 48 hours without manual intervention.</p>
+<button class="text-label-sm font-label-sm text-secondary hover:text-white transition-colors flex items-center gap-1">View Log <span class="material-symbols-outlined text-[14px]">arrow_forward</span></button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
