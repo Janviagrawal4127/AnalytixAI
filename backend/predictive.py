@@ -5,7 +5,7 @@ import pandas as pd
 from typing import Dict, Any
 from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.model_selection import train_test_split
-from agents.state import GraphState
+from backend.state import GraphState
 
 def predictive_node(state: GraphState) -> Dict[str, Any]:
     """

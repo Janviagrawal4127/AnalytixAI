@@ -1,7 +1,7 @@
 import os
 import re
 from typing import Dict, Any
-from agents.state import GraphState
+from backend.state import GraphState
 
 def run_rule_based_fallback(user_query: str) -> str:
     user_query = user_query.lower()

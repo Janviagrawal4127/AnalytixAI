@@ -1,17 +1,17 @@
 from langgraph.graph import StateGraph, END
-from agents.state import GraphState
-from agents.orchestrator import orchestrator_node
-from agents.ingestion import ingestion_node
-from agents.cleaning import cleaning_node
-from agents.preprocessing import preprocessing_node
-from agents.nl_query import nl_query_node
-from agents.sql_agent import sql_agent_node
-from agents.eda import eda_node
-from agents.visualization import visualization_node
-from agents.predictive import predictive_node
-from agents.insight import insight_node
-from agents.recommendation import recommendation_node
-from agents.report import report_node
+from backend.state import GraphState
+from backend.orchestrator import orchestrator_node
+from backend.ingestion import ingestion_node
+from backend.cleaning import cleaning_node
+from backend.preprocessing import preprocessing_node
+from backend.nl_query import nl_query_node
+from backend.sql_agent import sql_agent_node
+from backend.eda import eda_node
+from backend.visualization import visualization_node
+from backend.predictive import predictive_node
+from backend.insight import insight_node
+from backend.recommendation import recommendation_node
+from backend.report import report_node
 
 def orchestrator_router(state: GraphState) -> str:
     """

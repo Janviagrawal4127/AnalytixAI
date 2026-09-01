@@ -1,16 +1,25 @@
 [project]
 name = "analytixai"
 version = "0.1.0"
-description = "Add your description here"
+description = "AnalytixAI — Multi-Agent AI Analytics Platform"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
     "groq>=1.6.0",
     "ipykernel>=7.3.0",
+    "joblib>=1.6.0",
     "langchain>=1.3.15",
     "langgraph>=1.2.11",
     "langsmith>=0.11.0",
+    "numpy>=2.5.2",
+    "pandas>=3.0.5",
     "pydantic>=2.13.4",
     "python-dotenv>=1.2.3",
+    "scikit-learn>=1.9.0",
+    "scipy>=1.18.1",
     "supabase>=2.31.0",
 ]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["backend*", "scripts*"]

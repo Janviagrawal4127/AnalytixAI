@@ -1,5 +1,5 @@
 from typing import Dict, Any, List
-from agents.state import GraphState
+from backend.state import GraphState
 
 def recommendation_node(state: GraphState) -> Dict[str, Any]:
     """

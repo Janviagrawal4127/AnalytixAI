@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import numpy as np
 from typing import Dict, Any
-from agents.state import GraphState
+from backend.state import GraphState
 from langgraph.graph import StateGraph
 
 def cleaning_node(state: GraphState) -> Dict[str, Any]:

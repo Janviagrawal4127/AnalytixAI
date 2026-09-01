@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
 
-def generate_sample_dataset(output_path: str = "data/sample_transactions.csv"):
+def generate_sample_dataset(output_path: str = "data/raw/sample_transactions.csv"):
     """
     Generates a realistic transaction dataset with missing values, duplicate entries,
     and statistical outliers to test and verify the multi-agent pipeline.

@@ -1,7 +1,7 @@
 import re
 from typing import Dict, Any, List
 from langchain_core.messages import AIMessage
-from agents.state import GraphState
+from backend.state import GraphState
 
 def orchestrator_node(state: GraphState) -> Dict[str, Any]:
     """

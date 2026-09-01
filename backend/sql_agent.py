@@ -2,7 +2,7 @@ import os
 import sqlite3
 import pandas as pd
 from typing import Dict, Any
-from agents.state import GraphState
+from backend.state import GraphState
 
 def self_heal_sql_query(failed_query: str, error_message: str) -> str:
     """

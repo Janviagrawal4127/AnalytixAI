@@ -1,6 +1,6 @@
 import pandas as pd
 from typing import Dict, Any, List
-from agents.state import GraphState
+from backend.state import GraphState
 
 def visualization_node(state: GraphState) -> Dict[str, Any]:
     """

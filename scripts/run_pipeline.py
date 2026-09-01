@@ -1,14 +1,28 @@
 import os
 import sys
+import importlib.util
 from dotenv import load_dotenv
 
+# Add project root to sys.path so backend/* and scripts/* are importable
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
+
 # Load env variables from root .env
-dotenv_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")
+dotenv_path = os.path.join(ROOT, ".env")
 load_dotenv(dotenv_path=dotenv_path)
 
 from langchain_core.messages import HumanMessage
-from agents.generate_sample_data import generate_sample_dataset
-from agents.pipeline import compile_pipeline
+from backend.pipeline import compile_pipeline
+
+# Load generate_sample_data from scripts/ directly
+_spec = importlib.util.spec_from_file_location(
+    "generate_sample_data",
+    os.path.join(ROOT, "scripts", "generate_sample_data.py")
+)
+_mod = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_mod)
+generate_sample_dataset = _mod.generate_sample_dataset
 
 def run_end_to_end_pipeline(prompt: str = None):
     """
@@ -19,7 +33,7 @@ def run_end_to_end_pipeline(prompt: str = None):
     print("==================================================")
     
     # 1. Generate sample data if not exists
-    dataset_path = "data/sample_transactions.csv"
+    dataset_path = "data/raw/sample_transactions.csv"
     if not os.path.exists(dataset_path):
         generate_sample_dataset(dataset_path)
         

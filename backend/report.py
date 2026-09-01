@@ -1,6 +1,6 @@
 import os
 from typing import Dict, Any
-from agents.state import GraphState
+from backend.state import GraphState
 
 def report_node(state: GraphState) -> Dict[str, Any]:
     """

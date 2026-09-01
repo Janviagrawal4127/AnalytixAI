@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
@@ -32,6 +32,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${inter.variable} ${outfit.variable} font-body antialiased bg-background text-on-surface`}
+        suppressHydrationWarning
       >
         {children}
       </body>
