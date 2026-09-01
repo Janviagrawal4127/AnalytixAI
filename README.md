@@ -119,13 +119,11 @@ AnalytixAI/
 ├── .env                                  # Root environment variables (Groq, Supabase)
 ├── pyproject.toml                        # Python dependencies (UV package manager)
 ├── uv.lock                               # Locked Python dependency graph
-├── requirement.txt                       # Backup requirements manifest
 │
-├── agents/                               # 🐍 Python Multi-Agent Backend (LangGraph)
+├── backend/                              # 🐍 Python Multi-Agent Backend (LangGraph)
 │   ├── __init__.py                       # Agent registry exports
 │   ├── state.py                          # TypedDict GraphState schema definition
 │   ├── pipeline.py                       # LangGraph compilation & router logic
-│   ├── run_pipeline.py                   # End-to-end CLI execution entry point
 │   ├── orchestrator.py                   # Master Orchestrator scheduling agent
 │   ├── ingestion.py                      # Data ingestion agent
 │   ├── cleaning.py                       # Data quality & imputation agent
@@ -137,10 +135,13 @@ AnalytixAI/
 │   ├── predictive.py                     # Revenue forecasting & churn agent
 │   ├── insight.py                        # Risk & Opportunity generator agent
 │   ├── recommendation.py                 # Prioritized operational recommendations
-│   ├── report.py                         # Standalone HTML report builder
+│   └── report.py                         # Standalone HTML report builder
+│
+├── scripts/                              # 🏃 Runner & Utility Scripts
+│   ├── run_pipeline.py                   # End-to-end CLI execution entry point
 │   └── generate_sample_data.py           # Dirty transaction dataset generator
 │
-├── analytixai/                           # ⚛️ Next.js 15 Frontend (App Router)
+├── frontend/                             # ⚛️ Next.js 15 Frontend (App Router)
 │   ├── package.json                      # Next.js, React, Tailwind, Supabase dependencies
 │   ├── tailwind.config.ts                # Cyber-dark design tokens & color scales
 │   ├── tsconfig.json                     # TypeScript configuration
@@ -161,16 +162,24 @@ AnalytixAI/
 │           └── supabaseClient.ts         # Supabase client instantiation with fallback
 │
 ├── data/                                 # Generated datasets, sql results, and reports
-│   ├── sample_transactions.csv
-│   ├── cleaned_data.csv
-│   ├── sql_result.csv
-│   └── report.html
+│   ├── raw/
+│   │   ├── sample_transactions.csv
+│   │   └── raw_data.csv
+│   ├── processed/
+│   │   ├── cleaned_data.csv
+│   │   └── preprocessed_data.csv
+│   └── outputs/
+│       ├── sql_result.csv
+│       ├── predictions.json
+│       └── report.html
 │
-└── multi-agent-analytics-platform/       # Documentation & Design Specifications
+└── docs/                                 # Documentation & Design Specifications
     ├── PROJECT_EXPLANATION.md            # Technical Architecture Guide
     ├── PROJECT_SYNOPSIS.md               # Project Summary & Specifications
     ├── agent_workflow_details.md         # Detailed agent interaction diagrams
-    └── downloaded_screens/               # Raw HTML UI specs from Stitch
+    └── assets/
+        ├── Screenshot*.png               # UI mockups
+        └── screens/                      # Raw HTML UI specs from Stitch
 ```
 
 ---
@@ -195,7 +204,7 @@ SUPABASE_KEY="your-supabase-service-role-or-anon-key"
 
 # Next.js Public Supabase Auth Keys
 NEXT_PUBLIC_SUPABASE_URL="https://your-project.supabase.co"
-NEXT_PUBLIC_SUPABASE_ANON_KEY="your-supabase-anon-key"
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY="your-supabase-publishable-key"
 ```
 
 ---
@@ -213,17 +222,17 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY="your-supabase-anon-key"
 
 2. **Run the Full End-to-End Analytics Workflow**:
    ```bash
-   uv run python -m agents.run_pipeline
+   uv run python scripts/run_pipeline.py
    ```
 
 3. **Run a Natural Language Business Query (Vectorless RAG)**:
    ```bash
-   uv run python -m agents.run_pipeline "query: Show total sales grouped by product category"
+   uv run python scripts/run_pipeline.py "query: Show total sales grouped by product category"
    ```
 
 4. **Test the Self-Healing ReAct Error Recovery**:
    ```bash
-   uv run python -m agents.run_pipeline "query: Write a SELECT statement for total sales grouped by category, but deliberately misspell 'GROUP BY' as 'GROU BY' in the generated SQL query."
+   uv run python scripts/run_pipeline.py "query: Write a SELECT statement for total sales grouped by category, but deliberately misspell 'GROUP BY' as 'GROU BY' in the generated SQL query."
    ```
 
 ---
@@ -232,7 +241,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY="your-supabase-anon-key"
 
 1. **Navigate to the frontend folder and install dependencies**:
    ```bash
-   cd analytixai
+   cd frontend
    npm install
    ```
 
