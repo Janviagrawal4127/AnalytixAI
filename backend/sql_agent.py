@@ -191,3 +191,16 @@ def sql_agent_node(state: GraphState) -> Dict[str, Any]:
             else:
                 print("Max retries reached on local SQLite. SQL execution failed.")
                 return {"error": f"SQL Agent failed after {max_retries} attempts. Last error: {str(e)}"}
+
+def execute_query_safely(query: str, dataset_path: str = "data/cleaned_data.csv") -> Dict[str, Any]:
+    """
+    Helper function to safely execute an arbitrary SQL query via the self-healing SQL Agent.
+    """
+    state = {
+        "sql_query": query,
+        "active_dataset_path": dataset_path,
+        "cleaned_dataset_path": dataset_path,
+        "completed_steps": []
+    }
+    return sql_agent_node(state)
+

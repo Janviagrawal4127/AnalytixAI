@@ -22,7 +22,7 @@ export default function SignUpPage() {
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
-  
+
   const [showPassword, setShowPassword] = useState(false);
 
   // Handle Initial Registration Submission
@@ -83,7 +83,7 @@ export default function SignUpPage() {
       }
 
       setSuccessMsg("Account successfully verified! Redirecting to dashboard...");
-      
+
       // Delay navigation slightly so user sees the success message
       setTimeout(() => {
         router.push("/dashboard");
@@ -116,11 +116,11 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="flex w-full min-h-screen relative overflow-hidden bg-background">
+    <div className="flex w-full min-h-screen relative overflow-hidden bg-background" suppressHydrationWarning>
       {/* Background Orbs */}
       <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full blur-[100px] pointer-events-none bg-gradient-to-r from-primary-container/20 to-transparent"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[30vw] h-[30vw] rounded-full blur-[100px] pointer-events-none bg-gradient-to-r from-secondary-container/10 to-transparent"></div>
-      
+
       {/* Subtle grid pattern overlay */}
       <div className="absolute inset-0 cyber-grid opacity-20 pointer-events-none"></div>
 
@@ -189,7 +189,7 @@ export default function SignUpPage() {
         {/* Right Panel: Form Area */}
         <section className="w-full md:w-1/2 flex items-center justify-center p-container-padding-mobile md:p-container-padding-desktop bg-surface/50 backdrop-blur-xl">
           <div className="w-full max-w-md glass-panel rounded-xl p-stack-lg shadow-[0_0_40px_rgba(0,0,0,0.5)]">
-            
+
             {/* Mobile Logo */}
             <div className="flex md:hidden items-center justify-center gap-stack-sm mb-stack-lg">
               <span className="material-symbols-outlined text-primary-container text-headline-lg-mobile" style={{ fontVariationSettings: "'FILL' 1" }}>
@@ -361,7 +361,7 @@ export default function SignUpPage() {
                     <span>{loading ? "Verifying..." : "Verify Code"}</span>
                     <span className="material-symbols-outlined text-[18px]">verified</span>
                   </button>
-                  
+
                   <div className="flex justify-between items-center mt-4">
                     <button
                       className="font-label text-label-md text-on-surface-variant hover:text-on-surface transition-colors flex items-center gap-1"

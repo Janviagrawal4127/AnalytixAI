@@ -31,6 +31,31 @@ const navItems: NavItem[] = [
     href: "/dashboard/charts",
   },
   {
+    name: "SQL Studio",
+    icon: "terminal",
+    href: "/dashboard/sql",
+  },
+  {
+    name: "Predictions",
+    icon: "trending_up",
+    href: "/dashboard/predictions",
+  },
+  {
+    name: "Insights",
+    icon: "tips_and_updates",
+    href: "/dashboard/insights",
+  },
+  {
+    name: "Strategy AI",
+    icon: "psychology",
+    href: "/dashboard/strategy",
+  },
+  {
+    name: "Reports",
+    icon: "description",
+    href: "/dashboard/reports",
+  },
+  {
     name: "Chat",
     icon: "forum",
     href: "/dashboard/chat",

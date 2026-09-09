@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 export default function Topbar() {
   return (
@@ -35,11 +36,14 @@ export default function Topbar() {
         </button>
         
         {/* User Profile Avatar */}
-        <div className="w-8 h-8 rounded-full overflow-hidden border border-white/20 cursor-pointer hover:border-primary transition-colors">
-          <img
-            className="w-full h-full object-cover"
+        <div className="w-8 h-8 rounded-full overflow-hidden border border-white/20 cursor-pointer hover:border-primary transition-colors relative">
+          <Image
+            className="object-cover"
             alt="Profile Avatar"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0j830RYKTe7tVq9duDkswJfP7R7LYIZPZaB8ERhSlC6wQHMLBw9A3ol1kNjp90-Tt5bTC1_HOeNdjzEYqkcIJk6PIZsyZlThopS7P_UnWU2RJdKoI11BkOy7t1EvvXQbGQoyuQXqCbUn-6nY8EXN78JANw7eX4cvlX9Av32hkpUAmjODrHMhGH7-S-8_TBbdw8n7n-_f0_Omi7bT1SH2U5SE0VDWTPnVe0jo4b38BZh0a_O6qqK4O-g"
+            fill
+            sizes="32px"
+            unoptimized
           />
         </div>
       </div>

@@ -40,7 +40,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex w-full min-h-screen relative overflow-hidden bg-background">
+    <div className="flex w-full min-h-screen relative overflow-hidden bg-background" suppressHydrationWarning>
       {/* Background Orbs */}
       <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full blur-[100px] pointer-events-none bg-gradient-to-r from-primary-container/20 to-transparent"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[30vw] h-[30vw] rounded-full blur-[100px] pointer-events-none bg-gradient-to-r from-secondary-container/10 to-transparent"></div>
@@ -142,7 +142,7 @@ export default function LoginPage() {
               </div>
             )}
 
-            <form onSubmit={handleLogin} className="flex flex-col gap-stack-md">
+            <form onSubmit={handleLogin} className="flex flex-col gap-stack-md" suppressHydrationWarning>
               {/* Email Field */}
               <div>
                 <label className="block font-label text-label-md text-on-surface-variant mb-2" htmlFor="email">
@@ -153,6 +153,7 @@ export default function LoginPage() {
                     <span className="material-symbols-outlined text-[20px]">mail</span>
                   </span>
                   <input
+                    suppressHydrationWarning
                     className="input-field w-full rounded-lg h-12 pl-12 pr-4 text-on-surface font-body placeholder:text-on-surface-variant/50"
                     id="email"
                     name="email"
@@ -180,6 +181,7 @@ export default function LoginPage() {
                     <span className="material-symbols-outlined text-[20px]">lock</span>
                   </span>
                   <input
+                    suppressHydrationWarning
                     className="input-field w-full rounded-lg h-12 pl-12 pr-12 text-on-surface font-body placeholder:text-on-surface-variant/50"
                     id="password"
                     name="password"
@@ -191,6 +193,7 @@ export default function LoginPage() {
                   />
                   {/* Toggle Visibility */}
                   <button
+                    suppressHydrationWarning
                     className="absolute inset-y-0 right-0 flex items-center pr-4 text-on-surface-variant hover:text-on-surface transition-colors"
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
@@ -205,6 +208,7 @@ export default function LoginPage() {
               {/* Remember Me */}
               <div className="flex items-center gap-3 mt-2">
                 <input
+                  suppressHydrationWarning
                   className="w-4 h-4 rounded border-outline-variant bg-surface-container text-primary-container focus:ring-primary-container focus:ring-offset-background cursor-pointer"
                   id="remember"
                   type="checkbox"
@@ -216,6 +220,7 @@ export default function LoginPage() {
 
               {/* CTA */}
               <button
+                suppressHydrationWarning
                 className="glow-button w-full h-12 rounded-lg font-label text-label-md text-white font-semibold mt-4 flex items-center justify-center gap-2 active:scale-[0.99] disabled:opacity-50"
                 type="submit"
                 disabled={loading}
@@ -235,6 +240,7 @@ export default function LoginPage() {
             {/* SSO Options */}
             <div className="flex flex-col gap-3">
               <button
+                suppressHydrationWarning
                 className="glass-card w-full h-12 rounded-lg flex items-center justify-center gap-3 hover:bg-surface-container-high transition-colors text-on-surface font-label text-label-md"
                 type="button"
               >
@@ -247,6 +253,7 @@ export default function LoginPage() {
                 <span>Continue with Google Workspace</span>
               </button>
               <button
+                suppressHydrationWarning
                 className="glass-card w-full h-12 rounded-lg flex items-center justify-center gap-3 hover:bg-surface-container-high transition-colors text-on-surface font-label text-label-md"
                 type="button"
               >

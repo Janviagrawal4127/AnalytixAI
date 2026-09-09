@@ -1,292 +1,408 @@
-# ⚡ AnalytixAI — Enterprise Multi-Agent AI Analytics Platform
+<div align="center">
 
-[![Next.js](https://img.shields.io/badge/Next.js-15.0-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![Python](https://img.shields.io/badge/Python-3.14-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![LangGraph](https://img.shields.io/badge/LangGraph-Multi--Agent-FF6F00?style=for-the-badge)](https://langchain-ai.github.io/langgraph/)
-[![Groq](https://img.shields.io/badge/Groq-Llama_3.3_/_Compound-F55036?style=for-the-badge)](https://groq.com/)
-[![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL_%26_Auth-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+# 🤖 AnalytixAI
+### AI-Powered Multi-Agent Business Intelligence Platform
 
-**AnalytixAI** is a SaaS-level, production-grade AI-powered Business Intelligence & Analytics platform designed to function as an **autonomous virtual Data Analyst team**. It coordinates **12 specialized AI agents** under a Master Orchestrator to automate the end-to-end analytics lifecycle — from raw transactional data ingestion and statistical imputation to natural language SQL querying, predictive revenue modeling, and executive report generation.
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
+[![LangGraph](https://img.shields.io/badge/LangGraph-Multi--Agent-7c3aed?style=for-the-badge)](https://langchain-ai.github.io/langgraph/)
+[![Groq](https://img.shields.io/badge/Groq-Llama_3.3_70B-orange?style=for-the-badge)](https://console.groq.com/)
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python)](https://python.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://typescriptlang.org/)
 
----
+**Upload a CSV. Get a complete business intelligence report in seconds.**  
+*Powered by 12 autonomous AI agents that think, analyze, and strategize like your own data science team.*
 
-## 🌟 Key Features
+[🚀 Live Demo](#) · [📖 Docs](#architecture) · [🤖 Agents](#12-ai-agents) · [🛠️ Setup](#quick-start)
 
-* **🧠 12-Agent Autonomous Swarm**: Coordinated via a LangGraph state graph in a dynamic hub-and-spoke execution pipeline.
-* **💬 Vectorless RAG (Text-to-SQL)**: High-precision natural language translation into executable SQL queries via the **Groq API** (`groq/compound` model), eliminating embedding hallucination for exact financial calculations.
-* **🔄 Self-Healing SQL ReAct Agent**: An active **Reason + Act (ReAct)** loop in the database layer that intercepts runtime syntax errors or column mismatches, reasons about the table schema, auto-corrects the query, and retries dynamically.
-* **⚡ Dual-Mode Database Engine**: Supports cloud **Supabase (PostgreSQL)** via RPC execution with a local, zero-config in-memory **SQLite** fallback.
-* **🔐 Supabase Authentication & Email OTP**: Complete client authentication supporting email/password sign-in and a 2-stage sign-up flow featuring dynamic 6-digit **Email OTP verification**.
-* **🎨 Cyber-Precision Glassmorphic UI**: High-fidelity frontend built on **Next.js 15 (App Router)**, Tailwind CSS, Outfit & Inter typography, and ambient dark-mode glassmorphism.
+</div>
 
 ---
 
-## 🏗️ Multi-Agent Architecture
+## ✨ What is AnalytixAI?
 
-```mermaid
-graph TD
-    classDef orchestrator fill:#1e1b4b,stroke:#818cf8,stroke-width:3px,color:#fff;
-    classDef ingest fill:#172554,stroke:#3b82f6,stroke-width:1px,color:#fff;
-    classDef sql fill:#1e293b,stroke:#a8a29e,stroke-width:1px,color:#fff;
-    classDef analytics fill:#311042,stroke:#d946ef,stroke-width:1px,color:#fff;
-    classDef out fill:#022c22,stroke:#10b981,stroke-width:2px,color:#fff;
+AnalytixAI replaces an entire data analyst team with an autonomous fleet of 12 AI agents. You upload a business dataset (CSV, JSON, Parquet, Excel) and the system automatically:
 
-    Orch((🧠 Master Orchestrator)):::orchestrator
-    
-    Ingest[📥 Data Ingestion]:::ingest
-    Quality[🧹 Data Quality]:::ingest
-    Preproc[⚙️ Preprocessing]:::ingest
-    
-    Nl[💬 NL Query Agent]:::sql
-    Sql[🗃️ SQL Agent]:::sql
-    
-    Eda[📊 EDA Agent]:::analytics
-    Viz[📈 Visualization]:::analytics
-    Predict[🔮 Predictive Agent]:::analytics
-    Insight[💡 Insight Gen]:::analytics
-    Rec[🎯 Recommendation]:::analytics
-    
-    Rep[📄 Report Gen]:::out
-    
-    Orch <-->|1. Parse Request & Load Data| Ingest
-    Orch <-->|2. Clean Outliers & Nulls| Quality
-    Orch <-->|3. Scale & Encode Features| Preproc
-    Orch <-->|4. Translate NL to SQL| Nl
-    Orch <-->|5. Execute Query on DB| Sql
-    Orch <-->|6. Statistical Analysis| Eda
-    Orch <-->|7. Generate Chart Specs| Viz
-    Orch <-->|8. Forecast Revenue & Churn| Predict
-    Orch <-->|9. Synthesize Opportunities/Risks| Insight
-    Orch <-->|10. Score Operational Actions| Rec
-    Orch <-->|11. Compile HTML/PDF Report| Rep
+| Step | Agent | Output |
+|------|-------|--------|
+| 1 | **Data Ingestor** | Loads and validates your dataset |
+| 2 | **Data Cleaner** | Fixes nulls, outliers, duplicates |
+| 3 | **Preprocessor** | Encodes features, normalizes, splits data |
+| 4 | **EDA Analyst** | Computes statistics, correlations, distributions |
+| 5 | **NL Query Agent** | Translates natural language → SQL (Groq Llama 3.3) |
+| 6 | **SQL ReAct Agent** | Self-healing SQL with Vectorless RAG |
+| 7 | **Visualization Agent** | Generates chart specifications |
+| 8 | **Predictive ML** | Revenue forecast (OLS) + Churn model (Logistic) |
+| 9 | **Insight Agent** | Derives opportunity & risk business insights |
+| 10 | **Recommender** | Ranked strategic recommendations with ROI |
+| 11 | **Report Generator** | Compiles executive HTML/PDF report |
+| 12 | **Strategy Advisor** | Live AI chatbot for business Q&A (Groq LLM) |
+
+---
+
+## 🖥️ Screenshots
+
+> Dashboard | Strategy AI Chatbot | Predictions | SQL Studio | Agent Monitor
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  📊 Dashboard     💬 Strategy AI    🔮 Predictions       │
+│  📁 Upload        🖥️ SQL Studio      💡 Insights         │
+│  📈 Charts        📄 Reports         🤖 Agents           │
+│  🔬 EDA           🔌 Chat Terminal                       │
+└─────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🤖 The 12-Agent Fleet
+## 🏗️ Architecture
 
-| Symbol | Agent Name | Inputs Received | Core Toolkit / Engine | Primary Outputs | Key Responsibility |
-| :---: | :--- | :--- | :--- | :--- | :--- |
-| **🧠** | **Master Orchestrator** | User query, state graph | LangGraph router, heuristics | Execution plan, next node | Coordinates tasks, manages memory, schedules agent routing. |
-| **📥** | **Data Ingestion** | CSV, Excel, JSON | Pandas parsers | In-memory DataFrame | Ingests business transactions and validates schema types. |
-| **🧹** | **Data Quality & Cleaning** | Ingested DataFrame | Median/mode, Z-score filter | Cleaned DataFrame | Imputes missing values, caps outliers, deduplicates rows. |
-| **⚙️** | **Data Preprocessing** | Cleaned DataFrame | OneHotEncoder, MinMax scaler | Feature matrix (scaled) | Encodes categoricals, normalizes numeric metrics for ML. |
-| **💬** | **NL Query Agent** | Plain English query | Groq API (`groq/compound`) | Executable SQL statement | Translates user business questions into standard SQL. |
-| **🗃️** | **SQL Agent** | SQL query, schema | Supabase Client / SQLite3 | Query results DataFrame | Executes queries; runs self-healing ReAct loop on errors. |
-| **📊** | **EDA Agent** | Cleaned DataFrame | Pearson correlation, describe | Correlation matrix, stats | Calculates descriptive summaries and correlation matrices. |
-| **📈** | **Visualization** | Numerical distributions | Layout generator | Recharts JSON specs | Builds visual configurations for UI charts and graphs. |
-| **🔮** | **Predictive Analytics** | Processed features | ARIMA, Logistic Regression | Forecast timeline, Churn risks | Models 90-day revenue trends and churn probabilities. |
-| **💡** | **Insight Generator** | EDA stats, ML outputs | Variance analyzer | Strategic Risk/Opportunity cards | Detects revenue leakage, niche margin scaling opportunities. |
-| **🎯** | **Recommendation** | Strategic cards | ROI & Timeframe matrix | Prioritized action items | Suggests business actions (pricing thresholds, marketing). |
-| **📄** | **Report Generator** | Charts, stats, insights | HTML/Markdown compiler | Executive performance report | Merges all findings into a downloadable business report. |
-
----
-
-## 🔁 Self-Healing SQL ReAct Workflow
-
-When an invalid or misspelled SQL query is encountered during execution, the SQL Agent automatically recovers without crashing:
-
-```mermaid
-sequenceDiagram
-    autonumber
-    actor User
-    participant Nl as 💬 NL Query Agent
-    participant Sql as 🗃️ SQL Agent (ReAct)
-    participant DB as 💾 Database (SQLite / Supabase)
-    participant LLM as ⚡ Groq LLM
-
-    User->>Nl: "Show total sales grouped by category (typo: GROU BY)"
-    Nl->>Sql: Generated SQL: SELECT ... GROU BY ...
-    Sql->>DB: Attempt 1: Execute SQL
-    DB-->>Sql: ❌ SQLite Error: near "BY": syntax error
-    Note over Sql: Intercept error & initiate ReAct loop
-    Sql->>LLM: Send Failed Query + Error Trace + Schema
-    Note over LLM: Reason about syntax typo and schema
-    LLM-->>Sql: Corrected SQL: SELECT ... GROUP BY ...
-    Sql->>DB: Attempt 2: Execute Corrected SQL
-    DB-->>Sql: ✅ Success (5 rows returned)
-    Sql-->>User: Return CSV / JSON results
+```
+┌─────────────────────────────────────────────────────────┐
+│              Next.js 15 Frontend (Port 3000)             │
+│  13 pages · Glassmorphic dark UI · TypeScript + Tailwind │
+└────────────────────┬────────────────────────────────────┘
+                     │ REST + WebSocket
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│              FastAPI Server (Port 8000)                  │
+│  7 REST endpoints + 1 WebSocket telemetry stream         │
+└────────────────────┬────────────────────────────────────┘
+                     │ Python
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│      LangGraph Hub-and-Spoke State Machine               │
+│                                                          │
+│  orchestrator → ingestion → cleaning → preprocessing     │
+│       ↑              ↓ each returns to orchestrator      │
+│       └──── eda → predictive → insight → report ────────┘
+└─────────────────────────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│  data/cleaned_data.csv · predictions.json · report.html  │
+└─────────────────────────────────────────────────────────┘
 ```
 
+### Key Design Patterns
+- **Hub-and-Spoke Routing** — Every agent returns control to the Orchestrator after execution
+- **TypedDict State Machine** — Immutable `GraphState` snapshots passed between all 12 agents
+- **ReAct Loop** — SQL Agent reasons → acts → observes → self-heals on error
+- **Vectorless RAG** — Direct schema injection into LLM prompt instead of vector embeddings (faster, cheaper)
+- **Data-Grounded Chatbot** — Live analytics context injected into every LLM conversation
+
 ---
 
-## 📂 Project Structure
+## 🚀 Quick Start
+
+### Prerequisites
+- Python 3.11+ with `uv` package manager
+- Node.js 18+
+- Groq API key (free at [console.groq.com](https://console.groq.com))
+- Supabase project (free at [supabase.com](https://supabase.com))
+
+### 1. Clone & Install
+
+```bash
+git clone https://github.com/Janviagrawal4127/Ai-Data-Analytics.git
+cd Ai-Data-Analytics
+
+# Install Python dependencies
+pip install uv
+uv sync
+
+# Install Node dependencies
+cd frontend && npm install && cd ..
+```
+
+### 2. Configure Environment
+
+Create a `.env` file in the project root:
+
+```env
+# Required — Get free key at https://console.groq.com
+Groq_API=gsk_your_groq_api_key_here
+
+# Required — Your Supabase project credentials
+SUPABASE_URL=https://yourproject.supabase.co
+SUPABASE_KEY=your_anon_public_key
+
+# Optional — for production
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
+
+Create `frontend/.env.local`:
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://yourproject.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_public_key
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
+
+### 3. Run the App
+
+**Terminal 1 — Backend:**
+```bash
+uv run python -m uvicorn backend.server:app --port 8000 --reload
+```
+
+**Terminal 2 — Frontend:**
+```bash
+cd frontend
+npm run dev
+```
+
+Open **http://localhost:3000** 🎉
+
+### 4. Run the Pipeline (Optional — generate sample data)
+```bash
+uv run python scripts/run_pipeline.py
+```
+This generates `data/cleaned_data.csv`, `data/outputs/predictions.json`, and `data/outputs/report.html`.
+
+---
+
+## 🤖 12 AI Agents — Deep Dive
+
+### Agent Pipeline Flow
+
+```
+User Query → Orchestrator → Plan List Generated
+                ↓
+         [ingestion] → Load CSV/JSON/Parquet/Excel
+                ↓
+         [cleaning] → Impute nulls (median/mode), IQR outlier removal
+                ↓
+         [preprocessing] → LabelEncoder + StandardScaler + 80/20 split
+                ↓
+         [eda] → Pearson correlation, describe(), value_counts()
+                ↓
+         [nl_query] → Groq Llama 3.3 → SQL translation
+                ↓
+         [sql_agent] → pandasql execution + ReAct self-healing
+                ↓
+         [predictive] → OLS Revenue Forecast + Logistic Churn Model
+                ↓
+         [insight] → Rule-based opportunity/risk pattern matching
+                ↓
+         [recommendation] → Ranked strategy with ROI estimates
+                ↓
+         [report] → HTML executive report compilation
+```
+
+### ML Models Used
+
+| Model | Task | Library | Key Metrics |
+|-------|------|---------|-------------|
+| OLS Linear Regression | 90-day revenue forecast | scikit-learn | R², MAE, RMSE |
+| Logistic Regression | Customer churn scoring | scikit-learn | Accuracy, ROC-AUC, F1 |
+| LabelEncoder | Categorical features | scikit-learn | — |
+| StandardScaler | Numerical normalization | scikit-learn | — |
+| IQR Method | Outlier detection | Pandas/NumPy | — |
+
+### Business Strategy Chatbot (Agent 12)
+
+Powered by **Groq Llama 3.3 70B Versatile** with live analytics context injection:
+
+```
+User: "What's our biggest churn risk?"
+           ↓
+   Load predictions.json → churn_risk_customers
+   Load cleaned_data.csv → churn rate, revenue, margins
+           ↓
+   Build system prompt with REAL numbers:
+   "18.2% churn rate · 14 critical accounts · $294,754 projected revenue"
+           ↓
+   Groq LLM → Data-grounded business strategy response
+```
+
+Built-in strategy templates: Revenue Growth · Churn Reduction · P&L Analysis · Market Expansion · Cost Optimization · SWOT Analysis
+
+---
+
+## 📁 Project Structure
 
 ```
 AnalytixAI/
-├── .env                                  # Root environment variables (Groq, Supabase)
-├── pyproject.toml                        # Python dependencies (UV package manager)
-├── uv.lock                               # Locked Python dependency graph
+├── backend/                    # Python FastAPI + LangGraph
+│   ├── state.py                # GraphState TypedDict (shared pipeline state)
+│   ├── pipeline.py             # LangGraph StateGraph + orchestrator_router()
+│   ├── orchestrator.py         # Master agent — plan generation
+│   ├── ingestion.py            # Data loading agent
+│   ├── cleaning.py             # Data quality agent
+│   ├── preprocessing.py        # Feature engineering agent
+│   ├── nl_query.py             # NL→SQL translation agent + rule-based fallback
+│   ├── sql_agent.py            # SQL ReAct self-healing agent
+│   ├── eda.py                  # Exploratory data analysis agent
+│   ├── visualization.py        # Chart specification generator
+│   ├── predictive.py           # Revenue forecast + churn ML agent
+│   ├── insight.py              # Business insight derivation agent
+│   ├── recommendation.py       # Strategic recommendation agent
+│   ├── report.py               # HTML report compilation agent
+│   ├── server.py               # FastAPI app (7 REST + 1 WebSocket)
+│   └── chatbot.py              # Strategy AI chatbot (Groq + data context)
 │
-├── backend/                              # 🐍 Python Multi-Agent Backend (LangGraph)
-│   ├── __init__.py                       # Agent registry exports
-│   ├── state.py                          # TypedDict GraphState schema definition
-│   ├── pipeline.py                       # LangGraph compilation & router logic
-│   ├── orchestrator.py                   # Master Orchestrator scheduling agent
-│   ├── ingestion.py                      # Data ingestion agent
-│   ├── cleaning.py                       # Data quality & imputation agent
-│   ├── preprocessing.py                  # Feature encoding & scaling agent
-│   ├── nl_query.py                       # LLM Vectorless RAG Text-to-SQL agent
-│   ├── sql_agent.py                      # Self-healing SQL ReAct agent
-│   ├── eda.py                           # Exploratory Data Analysis agent
-│   ├── visualization.py                  # Chart spec layout compiler
-│   ├── predictive.py                     # Revenue forecasting & churn agent
-│   ├── insight.py                        # Risk & Opportunity generator agent
-│   ├── recommendation.py                 # Prioritized operational recommendations
-│   └── report.py                         # Standalone HTML report builder
+├── frontend/                   # Next.js 15 + TypeScript + Tailwind
+│   └── src/app/
+│       ├── page.tsx            # Login (Supabase Auth)
+│       ├── signup/             # Sign Up + Email OTP
+│       └── dashboard/
+│           ├── page.tsx        # KPI Overview
+│           ├── upload/         # File Upload → Live Pipeline ✅
+│           ├── eda/            # EDA Statistics Viewer
+│           ├── charts/         # Visualization Builder
+│           ├── sql/            # SQL Studio + Vectorless RAG
+│           ├── predictions/    # Revenue Forecast + Churn ✅
+│           ├── insights/       # Risk & Opportunity Cards
+│           ├── strategy/       # Business Strategy Chatbot ✅
+│           ├── reports/        # Executive Report Builder
+│           ├── chat/           # WebSocket Telemetry Terminal ✅
+│           └── agents/         # Agent Fleet Monitor ✅
 │
-├── scripts/                              # 🏃 Runner & Utility Scripts
-│   ├── run_pipeline.py                   # End-to-end CLI execution entry point
-│   └── generate_sample_data.py           # Dirty transaction dataset generator
+├── data/
+│   ├── raw/                    # Uploaded raw datasets
+│   └── outputs/                # Pipeline generated files
+│       ├── predictions.json    # Revenue forecast + churn scores
+│       └── report.html         # Executive HTML report
 │
-├── frontend/                             # ⚛️ Next.js 15 Frontend (App Router)
-│   ├── package.json                      # Next.js, React, Tailwind, Supabase dependencies
-│   ├── tailwind.config.ts                # Cyber-dark design tokens & color scales
-│   ├── tsconfig.json                     # TypeScript configuration
-│   └── src/
-│       ├── app/
-│       │   ├── globals.css               # Glassmorphism, cyber-grid, glowing accents
-│       │   ├── layout.tsx                # Root layout (Outfit & Inter fonts, Material Symbols)
-│       │   ├── page.tsx                  # 🔐 Login Screen (Supabase Auth)
-│       │   ├── signup/
-│       │   │   └── page.tsx              # 📝 Sign Up Screen with Dynamic Email OTP
-│       │   └── dashboard/
-│       │       └── layout.tsx            # 📊 Nested Dashboard layout (Sidebar + Topbar)
-│       ├── components/
-│       │   └── layout/
-│       │       ├── Sidebar.tsx           # Persistent left navigation with active path tracking
-│       │       └── Topbar.tsx            # Top status bar with search, actions, avatar
-│       └── lib/
-│           └── supabaseClient.ts         # Supabase client instantiation with fallback
+├── tests/
+│   └── test_agents.py          # 30+ pytest unit tests
 │
-├── data/                                 # Generated datasets, sql results, and reports
-│   ├── raw/
-│   │   ├── sample_transactions.csv
-│   │   └── raw_data.csv
-│   ├── processed/
-│   │   ├── cleaned_data.csv
-│   │   └── preprocessed_data.csv
-│   └── outputs/
-│       ├── sql_result.csv
-│       ├── predictions.json
-│       └── report.html
+├── scripts/
+│   └── run_pipeline.py         # CLI pipeline runner
 │
-└── docs/                                 # Documentation & Design Specifications
-    ├── PROJECT_EXPLANATION.md            # Technical Architecture Guide
-    ├── PROJECT_SYNOPSIS.md               # Project Summary & Specifications
-    ├── agent_workflow_details.md         # Detailed agent interaction diagrams
-    └── assets/
-        ├── Screenshot*.png               # UI mockups
-        └── screens/                      # Raw HTML UI specs from Stitch
+├── docs/
+│   ├── PROJECT_EXPLANATION.md  # Technical deep-dive
+│   └── PROJECT_SYNOPSIS.md     # Academic synopsis
+│
+├── Dockerfile                  # Multi-stage backend container
+├── docker-compose.yml          # Full-stack orchestration
+├── frontend/Dockerfile.frontend # Next.js production container
+├── pytest.ini                  # Test configuration
+└── pyproject.toml              # Python dependencies (uv)
 ```
 
 ---
 
-## 🚀 Getting Started
+## 🌐 API Reference
 
-### 1. Prerequisites
-* **Python 3.10+** (Python 3.14 compatible)
-* **Node.js 18+** & **npm**
-* **UV package manager** (recommended for Python) or `pip`
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/health` | Agent fleet status |
+| `POST` | `/api/pipeline/run` | Trigger 12-agent pipeline |
+| `POST` | `/api/query/sql` | NL→SQL translation + execution |
+| `GET` | `/api/data/predictions` | Revenue forecast + churn data |
+| `GET` | `/api/data/report` | Download executive HTML report |
+| `POST` | `/api/chat` | Business strategy AI chatbot |
+| `WS` | `/ws/telemetry` | Real-time agent event stream |
 
-### 2. Environment Configuration
-Create a `.env` file in the root directory:
+**Interactive API Docs:** http://localhost:8000/docs (Swagger UI auto-generated by FastAPI)
 
-```env
-# Groq API Key (for LLM Query Translation & Self-Healing ReAct)
-Groq_API="gsk_your_groq_api_key_here"
+---
 
-# Supabase Configuration (Optional - falls back to SQLite & local dev if empty)
-SUPABASE_URL="https://your-project.supabase.co"
-SUPABASE_KEY="your-supabase-service-role-or-anon-key"
+## 🧪 Testing
 
-# Next.js Public Supabase Auth Keys
-NEXT_PUBLIC_SUPABASE_URL="https://your-project.supabase.co"
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY="your-supabase-publishable-key"
+```bash
+# Run all unit tests (skip slow E2E)
+uv run pytest tests/ -v -m "not slow"
+
+# Run with coverage report
+uv run pytest tests/ -v --cov=backend --cov-report=term-missing
+
+# Run full E2E pipeline test
+uv run pytest tests/ -v
+```
+
+**Test Coverage:**
+- ✅ All 12 agent nodes (import + execution)
+- ✅ NL Query fallback patterns (revenue, churn, region, top-N)
+- ✅ SQL safe execution + aggregation
+- ✅ FastAPI endpoint status codes
+- ✅ Chatbot module + system prompt
+- ✅ GraphState schema validation
+- ✅ Pipeline compilation
+
+---
+
+## 🐳 Docker Deployment
+
+```bash
+# Full stack — backend + frontend
+docker-compose up --build
+
+# Backend only
+docker build -t analytixai-backend .
+docker run -p 8000:8000 --env-file .env analytixai-backend
 ```
 
 ---
 
-## 💻 Running the Application
+## ☁️ Cloud Deployment
 
-### 🐍 Backend Multi-Agent Pipeline (CLI)
+### Backend → Render.com
+1. Connect this GitHub repo to Render
+2. Set **Build Command:** `pip install uv && uv sync`
+3. Set **Start Command:** `uv run python -m uvicorn backend.server:app --host 0.0.0.0 --port $PORT`
+4. Add environment variables in Render dashboard: `Groq_API`, `SUPABASE_URL`, `SUPABASE_KEY`
 
-1. **Install Python dependencies**:
-   ```bash
-   uv sync
-   # or with standard pip:
-   pip install -r requirement.txt
-   ```
-
-2. **Run the Full End-to-End Analytics Workflow**:
-   ```bash
-   uv run python scripts/run_pipeline.py
-   ```
-
-3. **Run a Natural Language Business Query (Vectorless RAG)**:
-   ```bash
-   uv run python scripts/run_pipeline.py "query: Show total sales grouped by product category"
-   ```
-
-4. **Test the Self-Healing ReAct Error Recovery**:
-   ```bash
-   uv run python scripts/run_pipeline.py "query: Write a SELECT statement for total sales grouped by category, but deliberately misspell 'GROUP BY' as 'GROU BY' in the generated SQL query."
-   ```
+### Frontend → Vercel
+```bash
+cd frontend
+npx vercel --prod
+```
+Add `NEXT_PUBLIC_API_URL=https://your-render-url.onrender.com` in Vercel settings.
 
 ---
 
-### ⚛️ Frontend Next.js Dashboard
+## 🛠️ Tech Stack
 
-1. **Navigate to the frontend folder and install dependencies**:
-   ```bash
-   cd frontend
-   npm install
-   ```
-
-2. **Start the Development Server**:
-   ```bash
-   npm run dev
-   ```
-   Open **[http://localhost:3000](http://localhost:3000)** in your browser.
-
-3. **Build for Production**:
-   ```bash
-   npm run build
-   ```
+| Layer | Technology |
+|-------|-----------|
+| **LLM** | Groq API · Llama 3.3 70B Versatile |
+| **Agents** | LangGraph · LangChain Core |
+| **Backend** | FastAPI · Uvicorn · Python 3.11 |
+| **ML** | scikit-learn · Pandas · NumPy |
+| **SQL** | pandasql · SQLite in-memory |
+| **Frontend** | Next.js 15 · React 19 · TypeScript 5 |
+| **Styling** | Tailwind CSS · Glassmorphism · Material Symbols |
+| **Auth** | Supabase (Email + OTP) |
+| **Testing** | pytest · pytest-cov · FastAPI TestClient |
+| **DevOps** | Docker · docker-compose · uv |
+| **Deployment** | Vercel (frontend) · Render (backend) |
 
 ---
 
-## 🧪 Verification & Test Results
+## 📊 Build Status
 
-* **✅ LangGraph Pipeline Invocation**: Successfully ingested, cleaned, and modeled 200+ dirty transactional records with 100% completion across all 8 core pipeline steps.
-* **✅ Text-to-SQL Accuracy**: Groq LLM correctly translated multi-filter prompts into optimized SQL statements:
-  ```sql
-  SELECT CustomerID FROM data_table WHERE Churn = 1 ORDER BY CAC DESC
-  ```
-* **✅ ReAct Self-Correction**: Intercepted syntax errors in SQL execution and healed them within **1 retry cycle**.
-* **✅ Next.js Production Build**: Compiled all routes (`/`, `/signup`, `/_not-found`, and `/dashboard` layout) with 0 TypeScript/ESLint errors.
+```
+✓ Compiled successfully
+✓ Generating static pages (17/17)
+✓ Zero ESLint errors
+✓ All TypeScript types valid
+✓ Exit Code: 0
+```
 
 ---
 
-## 🛣️ Project Roadmap
+## 🤝 Contributing
 
-- [x] LangGraph 12-agent backend coordination workflow
-- [x] Vectorless RAG Text-to-SQL integration via Groq
-- [x] Self-Healing SQL ReAct debugging loop
-- [x] Dual-mode Supabase (Postgres) and SQLite database support
-- [x] Next.js 15 frontend architecture & cyber-dark glassmorphism styling
-- [x] Supabase Auth with dynamic Email OTP verification screens
-- [ ] Central KPI Overview Dashboard (`/dashboard`)
-- [ ] Data Ingestion & Drag-and-Drop file loader page (`/dashboard/upload`)
-- [ ] Exploratory Data Analysis profiler view (`/dashboard/eda`)
-- [ ] Interactive Chart Generator with Recharts (`/dashboard/charts`)
-- [ ] Real-time Agent Telemetry & Communication Console (`/dashboard/agents`)
-- [ ] Live Chat interface with Master Orchestrator (`/dashboard/chat`)
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'feat: Add amazing feature'`
+4. Push: `git push origin feature/amazing-feature`
+5. Open a Pull Request
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+MIT License — see [LICENSE](LICENSE) for details.
+
+---
+
+<div align="center">
+
+**Built with ❤️ using LangGraph · FastAPI · Next.js · Groq**
+
+⭐ Star this repo if you found it helpful!
+
+</div>

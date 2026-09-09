@@ -18,8 +18,17 @@ dependencies = [
     "scikit-learn>=1.9.0",
     "scipy>=1.18.1",
     "supabase>=2.31.0",
+    "fastapi>=0.115.0",
+    "uvicorn>=0.30.0",
 ]
 
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["backend*", "scripts*"]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+]
