@@ -6,7 +6,7 @@ FROM python:3.11-slim AS builder
 
 WORKDIR /app
 
-# Install uv (fast Python package manager)
+# Install uv
 RUN pip install --no-cache-dir uv
 
 # Copy dependency files first (layer cache optimization)
@@ -14,7 +14,9 @@ COPY pyproject.toml .
 COPY uv.lock* ./
 
 # Install all Python deps into /app/.venv
-RUN uv venv && uv sync --no-dev
+RUN uv venv /app/.venv && \
+    /app/.venv/bin/pip install --no-cache-dir uv && \
+    uv sync --no-dev
 
 # =====================================================================
 # Stage 2: Production runtime image
@@ -23,9 +25,8 @@ FROM python:3.11-slim AS runtime
 
 WORKDIR /app
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl \
+# Install curl for healthcheck
+RUN apt-get update && apt-get install -y --no-install-recommends curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy virtual environment from builder stage
@@ -36,18 +37,20 @@ COPY backend/ ./backend/
 COPY scripts/ ./scripts/
 COPY data/ ./data/
 
-# Ensure .venv python is used
+# Use venv python explicitly — avoids any PATH confusion on Render
+ENV VIRTUAL_ENV=/app/.venv
 ENV PATH="/app/.venv/bin:$PATH"
 ENV PYTHONPATH="/app"
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Expose FastAPI port
+# Expose port (Render uses $PORT env var — default 8000 locally)
 EXPOSE 8000
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
-  CMD curl -f http://localhost:8000/api/health || exit 1
+HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
+  CMD curl -f http://localhost:${PORT:-8000}/api/health || exit 1
 
-# Start FastAPI with uvicorn
-CMD ["python", "-m", "uvicorn", "backend.server:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]
+# Use ABSOLUTE path to uvicorn — never relies on PATH resolution
+# Render injects $PORT automatically; fallback to 8000 locally
+CMD ["/bin/sh", "-c", "/app/.venv/bin/uvicorn backend.server:app --host 0.0.0.0 --port ${PORT:-8000}"]

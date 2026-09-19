@@ -12,7 +12,6 @@ wheels/
 # Node (frontend)
 frontend/node_modules/
 frontend/.next/
-frontend/package-lock.json
 
 # Environment variables — NEVER commit these
 .env
