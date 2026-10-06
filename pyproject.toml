@@ -3,7 +3,7 @@ name = "analytixai"
 version = "0.1.0"
 description = "AnalytixAI — Multi-Agent AI Analytics Platform"
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.12"
 dependencies = [
     "groq>=1.6.0",
     "ipykernel>=7.3.0",

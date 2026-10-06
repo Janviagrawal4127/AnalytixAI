@@ -5,13 +5,14 @@ services:
   - type: web
     name: analytixai-backend
     runtime: python
-    region: oregon  # or singapore / frankfurt — pick closest to your users
-    plan: free      # change to "starter" for always-on (no sleep)
+    region: oregon
+    plan: free
+    pythonVersion: "3.12.0"
 
-    # Build: install uv then sync all dependencies
-    buildCommand: pip install uv && uv sync
+    # Build: install uv then do a locked install from uv.lock
+    buildCommand: pip install uv && uv sync --frozen
 
-    # Start: use `uv run` — it automatically activates the venv and finds uvicorn
+    # Start: uvicorn via uv run
     startCommand: uv run uvicorn backend.server:app --host 0.0.0.0 --port $PORT
 
     # Health check — Render pings this to confirm service is up
@@ -25,10 +26,12 @@ services:
         value: .
       - key: PYTHONUNBUFFERED
         value: "1"
-      # Add these in Render Dashboard → Environment (keep secrets out of code):
+      # Set these in Render Dashboard → Environment (keep secrets out of code):
       # - key: Groq_API
       #   value: gsk_your_key_here
       # - key: SUPABASE_URL
       #   value: https://yourproject.supabase.co
       # - key: SUPABASE_KEY
       #   value: your_anon_key
+      # - key: ALLOWED_ORIGINS
+      #   value: https://your-app.vercel.app,http://localhost:3000

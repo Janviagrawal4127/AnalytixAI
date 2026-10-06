@@ -1,10 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Required for self-hosted / Docker deployment
-  // Vercel handles this automatically — keep for Docker compatibility
-  output: "standalone",
-
   // Allow images from any external domain
   images: {
     unoptimized: true,
