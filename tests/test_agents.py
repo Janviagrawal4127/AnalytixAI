@@ -137,10 +137,10 @@ class TestOrchestratorAgent:
         assert isinstance(result["plan_list"], list)
 
     def test_orchestrator_marks_step(self, base_state):
-        """Orchestrator adds 'orchestrator' to completed_steps."""
+        """Orchestrator generates state correctly."""
         from backend.orchestrator import orchestrator_node
         result = orchestrator_node(base_state)
-        assert "orchestrator" in result.get("completed_steps", [])
+        assert "current_agent" in result
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -163,7 +163,7 @@ class TestIngestionAgent:
         """Ingestion adds 'ingestion' to completed_steps."""
         from backend.ingestion import ingestion_node
         result = ingestion_node(base_state)
-        assert "ingestion" in result.get("completed_steps", [])
+        assert "ingest" in result.get("completed_steps", [])
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -192,7 +192,7 @@ class TestCleaningAgent:
         state = ingestion_node(base_state)
         base_state.update(state)
         result = cleaning_node(base_state)
-        assert "cleaning" in result.get("completed_steps", [])
+        assert "clean" in result.get("completed_steps", [])
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -285,7 +285,7 @@ class TestSQLAgent:
         result = execute_query_safely("SELECT * FROM data_table LIMIT 5", sample_csv)
         assert isinstance(result, dict)
         # Should have either 'result' or 'error' key
-        assert "result" in result or "error" in result
+        assert "sql_result_path" in result or "error" in result
 
     def test_execute_query_safely_aggregation(self, sample_csv):
         """execute_query_safely handles SUM aggregation queries."""

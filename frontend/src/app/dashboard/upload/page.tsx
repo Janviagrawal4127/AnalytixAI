@@ -92,7 +92,7 @@ export default function DataUploadPage() {
       // Start animation in parallel with API call
       const [, response] = await Promise.all([
         animateSteps(),
-        fetch("http://localhost:8000/api/pipeline/run", {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/pipeline/run`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

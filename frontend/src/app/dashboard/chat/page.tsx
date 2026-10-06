@@ -12,7 +12,7 @@ interface LogEntry {
   message: string;
 }
 
-const WS_URL = "ws://localhost:8000/ws/telemetry";
+const WS_URL = process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:8000/ws/telemetry";
 const RECONNECT_DELAY = 3000;
 
 export default function ChatPage() {

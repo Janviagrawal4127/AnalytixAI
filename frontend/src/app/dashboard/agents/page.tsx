@@ -119,7 +119,7 @@ export default function AgentsPage() {
 
   const fetchHealth = async () => {
     try {
-      const res = await fetch('http://localhost:8000/api/health', { signal: AbortSignal.timeout(3000) });
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/health`, { signal: AbortSignal.timeout(3000) });
       if (!res.ok) throw new Error('Not ok');
       const data = await res.json();
       setBackendOnline(true);

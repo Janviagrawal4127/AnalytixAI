@@ -104,7 +104,7 @@
             <h2>1. Dataset Integrity & Quality Audit</h2>
             <p>The Ingestion and Quality Cleaning nodes performed a structural audit on the transaction database.</p>
             <ul>
-                <li><strong>Total Records Analyzed:</strong> 202</li>
+                <li><strong>Total Records Analyzed:</strong> 20</li>
                 <li><strong>Total Features Map:</strong> 11 columns detected</li>
                 <li><strong>Data Imputation Logs:</strong> Imputed null values using statistical median (numerical) and mode (categorical) mappings.</li>
             </ul>
@@ -121,7 +121,7 @@
                     </tr>
                 </thead>
                 <tbody>
-<tr><td><strong>TransactionID</strong></td><td>'TX1045': 2, 'TX1112': 2, 'TX1000': 1, 'TX1001': 1, 'TX1002': 1</td></tr><tr><td><strong>CustomerID</strong></td><td>'CUST106': 9, 'CUST104': 9, 'CUST121': 9, 'CUST135': 8, 'CUST122': 8</td></tr><tr><td><strong>Date</strong></td><td>'2026-05-31': 5, '2026-04-19': 4, '2026-03-22': 4, '2026-03-21': 4, '2026-01-21': 4</td></tr><tr><td><strong>ProductCategory</strong></td><td>'Hardware Support': 61, 'Professional Services': 53, 'SaaS Subscriptions': 45, 'Electronics': 43</td></tr><tr><td><strong>Region</strong></td><td>'Latin America': 59, 'Europe': 52, 'Asia-Pacific': 48, 'North America': 43</td></tr>
+<tr><td><strong>Date</strong></td><td>'2024-01-01': 1, '2024-01-02': 1, '2024-01-03': 1, '2024-01-04': 1, '2024-01-05': 1</td></tr><tr><td><strong>CustomerID</strong></td><td>'CUST-001': 1, 'CUST-002': 1, 'CUST-003': 1, 'CUST-004': 1, 'CUST-005': 1</td></tr><tr><td><strong>ProductCategory</strong></td><td>'Electronics': 7, 'Clothing': 7, 'Food': 6</td></tr><tr><td><strong>Region</strong></td><td>'North America': 7, 'Europe': 7, 'Asia-Pacific': 6</td></tr>
                 </tbody>
             </table>
         </div>
@@ -140,26 +140,35 @@
             <div class="grid">
 
                 <div class="card opportunity">
-                    <h4>💡 Quantity is a Strong Driver of Order Size</h4>
-                    <p>A positive correlation (0.44) indicates that customers scoring high on Quantity also tend to make larger purchases. Consider expanding features driving Quantity.</p>
+                    <h4>💡 LTV is a Strong Driver of Order Size</h4>
+                    <p>A positive correlation (1.00) indicates that customers scoring high on LTV also tend to make larger purchases. Consider expanding features driving LTV.</p>
                     <p style="margin-top: 10px; font-size: 13px; color: #94a3b8;">
                         <strong>Impact Target:</strong> Total Sales Revenue<br>
                         <strong>Confidence:</strong> HIGH
                     </p>
                 </div>
 
-                <div class="card risk">
-                    <h4>⚠️ Severe Customer Churn Probability Detected</h4>
-                    <p>Logistic regression modeling indicates high risk of churn for top customer segments (peak probability: 85.5%). Key attrition drivers are linked to low purchasing activity.</p>
+                <div class="card opportunity">
+                    <h4>💡 CAC is a Strong Driver of Order Size</h4>
+                    <p>A positive correlation (1.00) indicates that customers scoring high on CAC also tend to make larger purchases. Consider expanding features driving CAC.</p>
                     <p style="margin-top: 10px; font-size: 13px; color: #94a3b8;">
-                        <strong>Impact Target:</strong> Customer Retention Rate<br>
+                        <strong>Impact Target:</strong> Total Sales Revenue<br>
                         <strong>Confidence:</strong> HIGH
                     </p>
                 </div>
 
                 <div class="card opportunity">
-                    <h4>💡 Niche Scaling in Category: Electronics</h4>
-                    <p>While 'Hardware Support' commands the highest volume, category 'Electronics' represents a lower-volume segment that may contain unexploited high-margin opportunities.</p>
+                    <h4>💡 Margin is a Strong Driver of Order Size</h4>
+                    <p>A positive correlation (1.00) indicates that customers scoring high on Margin also tend to make larger purchases. Consider expanding features driving Margin.</p>
+                    <p style="margin-top: 10px; font-size: 13px; color: #94a3b8;">
+                        <strong>Impact Target:</strong> Total Sales Revenue<br>
+                        <strong>Confidence:</strong> HIGH
+                    </p>
+                </div>
+
+                <div class="card opportunity">
+                    <h4>💡 Niche Scaling in Category: Food</h4>
+                    <p>While 'Electronics' commands the highest volume, category 'Food' represents a lower-volume segment that may contain unexploited high-margin opportunities.</p>
                     <p style="margin-top: 10px; font-size: 13px; color: #94a3b8;">
                         <strong>Impact Target:</strong> Gross Profit Margin<br>
                         <strong>Confidence:</strong> MEDIUM
@@ -183,14 +192,6 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    <tr>
-                        <td><strong>Trigger Customer Re-engagement Campaigns</strong></td>
-                        <td style="font-size: 14px; color: #cbd5e1;">Establish automated email incentives (discounts/loyalty updates) for customers flagged in the top 10% churn probability bracket.</td>
-                        <td><span class="badge medium">Medium</span></td>
-                        <td style="font-size: 13px;">Short (1-2 weeks)</td>
-                        <td style="font-size: 13px; color: #94a3b8;">Low</td>
-                    </tr>
 
                     <tr>
                         <td><strong>Allocate Targeted Marketing to High-Margin Niches</strong></td>

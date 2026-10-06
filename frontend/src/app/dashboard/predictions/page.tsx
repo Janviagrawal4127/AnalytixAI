@@ -47,7 +47,7 @@ export default function PredictionsPage() {
   useEffect(() => {
     const fetchPredictions = async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/data/predictions", { signal: AbortSignal.timeout(4000) });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/data/predictions`, { signal: AbortSignal.timeout(4000) });
         if (!res.ok) throw new Error("Not found");
         const data = await res.json();
 
