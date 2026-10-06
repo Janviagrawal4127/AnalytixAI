@@ -274,9 +274,6 @@ AnalytixAI/
 │   ├── PROJECT_EXPLANATION.md  # Technical deep-dive
 │   └── PROJECT_SYNOPSIS.md     # Academic synopsis
 │
-├── Dockerfile                  # Multi-stage backend container
-├── docker-compose.yml          # Full-stack orchestration
-├── frontend/Dockerfile.frontend # Next.js production container
 ├── pytest.ini                  # Test configuration
 └── pyproject.toml              # Python dependencies (uv)
 ```
@@ -320,22 +317,6 @@ uv run pytest tests/ -v
 - ✅ Chatbot module + system prompt
 - ✅ GraphState schema validation
 - ✅ Pipeline compilation
-
----
-
-## 🐳 Docker Deployment
-
-```bash
-# Full stack — backend + frontend
-docker-compose up --build
-
-# Backend only
-docker build -t analytixai-backend .
-docker run -p 8000:8000 --env-file .env analytixai-backend
-```
-
----
-
 ## ☁️ Cloud Deployment
 
 ### Backend → Render.com
@@ -366,7 +347,7 @@ Add `NEXT_PUBLIC_API_URL=https://your-render-url.onrender.com` in Vercel setting
 | **Styling** | Tailwind CSS · Glassmorphism · Material Symbols |
 | **Auth** | Supabase (Email + OTP) |
 | **Testing** | pytest · pytest-cov · FastAPI TestClient |
-| **DevOps** | Docker · docker-compose · uv |
+| **DevOps** | uv · GitHub |
 | **Deployment** | Vercel (frontend) · Render (backend) |
 
 ---
