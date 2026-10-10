@@ -12,7 +12,16 @@ interface LogEntry {
   message: string;
 }
 
-const WS_URL = process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:8000/ws/telemetry";
+// Derive WebSocket URL from API URL if NEXT_PUBLIC_WS_URL is not explicitly set.
+// In production: NEXT_PUBLIC_API_URL=https://analytixai-klw3.onrender.com
+// → WS_URL becomes wss://analytixai-klw3.onrender.com/ws/telemetry
+function getWsUrl(): string {
+  if (process.env.NEXT_PUBLIC_WS_URL) return process.env.NEXT_PUBLIC_WS_URL;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  const wsBase = apiUrl.replace(/^http:\/\//, "ws://").replace(/^https:\/\//, "wss://");
+  return `${wsBase}/ws/telemetry`;
+}
+const WS_URL = getWsUrl();
 const RECONNECT_DELAY = 3000;
 
 export default function ChatPage() {
@@ -145,7 +154,7 @@ export default function ChatPage() {
             <span className="material-symbols-outlined text-primary">hub</span>
             <div>
               <h2 className="font-display text-sm font-bold text-on-surface">Orchestrator Swarm Telemetry</h2>
-              <p className="text-[11px] text-on-surface-variant font-mono">ws://localhost:8000/ws/telemetry · Live agent events</p>
+              <p className="text-[11px] text-on-surface-variant font-mono">{WS_URL} · Live agent events</p>
             </div>
           </div>
           {statusBadge()}

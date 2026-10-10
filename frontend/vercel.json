@@ -1,13 +1,3 @@
 {
-  "version": 2,
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "https://analytixai-backend.onrender.com/api/:path*"
-    },
-    {
-      "source": "/ws/:path*",
-      "destination": "https://analytixai-backend.onrender.com/ws/:path*"
-    }
-  ]
+  "version": 2
 }

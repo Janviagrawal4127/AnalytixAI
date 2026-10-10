@@ -3,7 +3,7 @@
 
 services:
   - type: web
-    name: analytixai-backend
+    name: analytixai-klw3
     runtime: python
     region: oregon
     plan: free
