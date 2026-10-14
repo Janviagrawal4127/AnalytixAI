@@ -30,18 +30,20 @@ app = FastAPI(
 # e.g. https://your-app.vercel.app,http://localhost:3000
 _raw_origins = os.getenv("ALLOWED_ORIGINS", "")
 _frontend_url = os.getenv("FRONTEND_URL", "")
-allow_origins = (
-    [o.strip() for o in _raw_origins.split(",") if o.strip()]
-    if _raw_origins
-    else (
-        [_frontend_url, "http://localhost:3000"] if _frontend_url
-        else ["http://localhost:3000"]
-    )
-)
+
+configured_origins = set(["http://localhost:3000", "http://127.0.0.1:3000"])
+if _raw_origins:
+    for o in _raw_origins.split(","):
+        clean_o = o.strip().rstrip("/")
+        if clean_o:
+            configured_origins.add(clean_o)
+if _frontend_url:
+    configured_origins.add(_frontend_url.strip().rstrip("/"))
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allow_origins,
+    allow_origins=list(configured_origins),
+    allow_origin_regex=r"^https://.*\.vercel\.app$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
