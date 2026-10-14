@@ -32,7 +32,14 @@ export default function LoginPage() {
       router.push("/dashboard");
     } catch (error: unknown) {
       console.error("Login failed:", error);
-      const msg = error instanceof Error ? error.message : "Invalid login credentials. Please try again.";
+      let msg = "Invalid login credentials. Please try again.";
+      if (error instanceof Error) {
+        if (error.message.toLowerCase().includes("email not confirmed")) {
+          msg = "Email not verified yet. Please check your email for the 6-digit verification code or sign up again to verify.";
+        } else {
+          msg = error.message;
+        }
+      }
       setErrorMsg(msg);
     } finally {
       setLoading(false);

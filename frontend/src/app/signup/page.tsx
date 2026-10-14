@@ -20,8 +20,18 @@ export default function SignUpPage() {
 
   // Status/Loading states
   const [loading, setLoading] = useState(false);
+  const [resendCooldown, setResendCooldown] = useState(0);
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
+
+  // Resend OTP countdown timer
+  React.useEffect(() => {
+    if (resendCooldown <= 0) return;
+    const interval = setInterval(() => {
+      setResendCooldown((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [resendCooldown]);
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -38,8 +48,14 @@ export default function SignUpPage() {
       return;
     }
 
+    if (password.length < 6) {
+      setErrorMsg("Password must be at least 6 characters long.");
+      setLoading(false);
+      return;
+    }
+
     try {
-      const { error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email: email.trim(),
         password: password,
         options: {
@@ -53,8 +69,16 @@ export default function SignUpPage() {
         throw error;
       }
 
-      setSuccessMsg("Registration successful! An OTP code has been sent to your email.");
+      // Check for already-registered email with anti-enumeration response
+      if (data?.user?.identities && data.user.identities.length === 0) {
+        setErrorMsg("An account with this email already exists. Please sign in instead.");
+        setLoading(false);
+        return;
+      }
+
+      setSuccessMsg("Registration successful! A 6-digit verification code has been sent to your email.");
       setIsVerifying(true);
+      setResendCooldown(60);
     } catch (error: unknown) {
       console.error("Sign up failed:", error);
       const msg = error instanceof Error ? error.message : "Registration failed. Please try again.";
@@ -67,16 +91,36 @@ export default function SignUpPage() {
   // Handle OTP Token Verification
   const handleVerifyOtpSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const cleanOtp = otpCode.trim().replace(/\D/g, "");
+    if (cleanOtp.length !== 6) {
+      setErrorMsg("Please enter the complete 6-digit verification code.");
+      return;
+    }
+
     setLoading(true);
     setErrorMsg("");
     setSuccessMsg("");
 
     try {
-      const { error } = await supabase.auth.verifyOtp({
+      // Primary: verify signup confirmation OTP
+      let { data, error } = await supabase.auth.verifyOtp({
         email: email.trim(),
-        token: otpCode.trim(),
+        token: cleanOtp,
         type: "signup",
       });
+
+      // Fallback: verify as email OTP in case project configuration uses email type
+      if (error) {
+        const retry = await supabase.auth.verifyOtp({
+          email: email.trim(),
+          token: cleanOtp,
+          type: "email",
+        });
+        if (!retry.error) {
+          data = retry.data;
+          error = null;
+        }
+      }
 
       if (error) {
         throw error;
@@ -87,11 +131,21 @@ export default function SignUpPage() {
       // Delay navigation slightly so user sees the success message
       setTimeout(() => {
         router.push("/dashboard");
-      }, 1500);
+      }, 1000);
 
     } catch (error: unknown) {
       console.error("Verification failed:", error);
-      const msg = error instanceof Error ? error.message : "Invalid or expired OTP code. Please check and try again.";
+      let msg = "Invalid verification code. Please check your 6-digit code or click Resend Code.";
+      if (error instanceof Error) {
+        const lower = error.message.toLowerCase();
+        if (lower.includes("expired")) {
+          msg = "Verification code has expired. Please click Resend Code to receive a new code.";
+        } else if (lower.includes("invalid") || lower.includes("token")) {
+          msg = "Invalid verification code. Please check and try again.";
+        } else {
+          msg = error.message;
+        }
+      }
       setErrorMsg(msg);
     } finally {
       setLoading(false);
@@ -100,18 +154,25 @@ export default function SignUpPage() {
 
   // Resend OTP Code
   const handleResendOtp = async () => {
+    if (resendCooldown > 0 || loading) return;
     setErrorMsg("");
     setSuccessMsg("");
+    setLoading(true);
+
     try {
       const { error } = await supabase.auth.resend({
         type: "signup",
         email: email.trim(),
       });
       if (error) throw error;
-      setSuccessMsg("A new OTP code has been sent to your email.");
+      setSuccessMsg("A new 6-digit verification code has been sent to your email.");
+      setResendCooldown(60);
     } catch (error: unknown) {
+      console.error("Resend OTP failed:", error);
       const msg = error instanceof Error ? error.message : "Failed to resend code. Please try again.";
       setErrorMsg(msg);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -342,21 +403,23 @@ export default function SignUpPage() {
                         key
                       </span>
                       <input
-                        className="input-cyber w-full rounded-lg py-2 pl-10 pr-4 font-body text-body-md text-center tracking-[0.5em] font-bold focus:ring-0"
+                        className="input-cyber w-full rounded-lg py-2 pl-10 pr-4 font-body text-body-md text-center tracking-[0.5em] font-bold focus:ring-0 text-xl"
                         id="otpCode"
                         type="text"
+                        inputMode="numeric"
+                        autoComplete="one-time-code"
                         maxLength={6}
                         placeholder="000000"
                         required
                         value={otpCode}
-                        onChange={(e) => setOtpCode(e.target.value)}
+                        onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
                       />
                     </div>
                   </div>
                   <button
                     className="glow-button w-full rounded-lg py-3 font-label text-label-md uppercase tracking-wider mt-stack-sm flex justify-center items-center gap-2 active:scale-[0.99] disabled:opacity-50 text-white font-semibold"
                     type="submit"
-                    disabled={loading}
+                    disabled={loading || otpCode.length !== 6}
                   >
                     <span>{loading ? "Verifying..." : "Verify Code"}</span>
                     <span className="material-symbols-outlined text-[18px]">verified</span>
@@ -373,12 +436,12 @@ export default function SignUpPage() {
                       <span>Edit Email</span>
                     </button>
                     <button
-                      className="font-label text-label-md text-primary hover:text-secondary-fixed transition-colors"
+                      className="font-label text-label-md text-primary hover:text-secondary-fixed transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                       type="button"
                       onClick={handleResendOtp}
-                      disabled={loading}
+                      disabled={loading || resendCooldown > 0}
                     >
-                      Resend Code
+                      {resendCooldown > 0 ? `Resend in ${resendCooldown}s` : "Resend Code"}
                     </button>
                   </div>
                 </form>
