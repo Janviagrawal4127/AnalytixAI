@@ -1,4 +1,4 @@
-# render.yaml — Render.com deployment configuration
+# render.yaml - Render.com deployment configuration
 # Docs: https://render.com/docs/render-yaml-spec
 
 services:
@@ -9,13 +9,13 @@ services:
     plan: free
     pythonVersion: "3.12.0"
 
-    # Build: install uv then do a locked install from uv.lock
-    buildCommand: pip install uv && uv sync --frozen
+    # Build: install from pinned requirements.txt
+    buildCommand: pip install -r requirements.txt
 
-    # Start: uvicorn via uv run
-    startCommand: uv run uvicorn backend.server:app --host 0.0.0.0 --port $PORT
+    # Start: run uvicorn directly via python module
+    startCommand: python -m uvicorn backend.server:app --host 0.0.0.0 --port $PORT
 
-    # Health check — Render pings this to confirm service is up
+    # Health check - Render pings this to confirm service is up
     healthCheckPath: /api/health
 
     # Auto-deploy on every push to main
@@ -26,7 +26,7 @@ services:
         value: .
       - key: PYTHONUNBUFFERED
         value: "1"
-      # Set these in Render Dashboard → Environment (keep secrets out of code):
+      # Set these in Render Dashboard -> Environment (keep secrets out of code):
       # - key: Groq_API
       #   value: gsk_your_key_here
       # - key: SUPABASE_URL
